@@ -1,1 +1,1 @@
-web: gunicorn play.wsgi --log-file -
+web: gunicorn lasikdollars.wsgi --log-file -
