@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="">
+        <h1 class="text-center">Access Point Details</h1>
+    </div>
+ID is: {{ accesspoint.id }} <br/>
+Name is: {{ accesspoint.name }} <br/>
+Purpose is: {{ accesspoint.purpose }} <br/>
+Created On:
+    {{ accesspoint.creationDT|date:'Y-m-d' }}
+    {{ accesspoint.creationDT|time:'H:i:s' }}<br/>
+Modified On:
+    {{ accesspoint.modificationDT|date:'Y-m-d' }}
+    {{ accesspoint.modificationDT|time:'H:i:s' }}<br/>
+
+<a class="text-center btn btn-primary" href="{% url "access_point_list" %}">
+    Back to the access point list</a>
+{% endblock %}

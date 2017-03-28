@@ -1,0 +1,154 @@
+{% load staticfiles %}
+
+<link
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+<script
+        src=
+    "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js">
+</script>
+
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+</script>
+
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+</script>
+
+<p hidden>fdafdafdsafdsafds</p>
+<span hidden>32323232323232</span>
+
+<p hidden>fdafdafdsafdsafds</p>
+<span hidden>32323232323232</span>
+<p >fdafdafdsafdsafds</p>
+<span >32323232323232</span>
+<p >d fdsaf dasfdsa</p>
+<span >32323232323232</span>
+
+<p>
+   Some text here here here <button class="clipboardclass"
+            data-clipboard-text="{% static 'images/clippy.svg'%}">
+        <img data-toggle="tooltip"
+                data-placement="right"
+                title="Click to copy to the clipboard"
+
+                src="{% static 'images/clippy.svg'%}"
+             alt="Copy to clipboard" width="20px">
+    </button>
+</p>
+
+<p>
+    <button class="btn btn-primary clipboardclass" data-clipboard-text="1">Button 2</button>
+</p>
+
+<p>
+    <button class="btn btn-primary clipboardclass" data-clipboard-text="1">Button 1</button>
+</p>
+
+<p>
+    <button class="btn btn-primary clipboardclass" data-clipboard-text="1">Button 2</button>
+</p>
+<p>
+    <button class="btn btn-primary clipboardclass" data-clipboard-text="1">Button 1</button>
+</p>
+
+<p>
+    <button class="btn btn-primary clipboardclass" data-clipboard-text="1">Button 2</button>
+</p>
+
+<span>fdafdsa fsda fjdsakfdsa f;dsaf</span>
+
+<p>
+<!-- Trigger -->
+<button
+        class="btn"
+        data-toggle = "popover"
+        title="Copied!"
+        data-content="Already copied to the clipboard."
+        data-clipboard-text=
+                "Just because you can doesn't mean you should — clipboard.js">
+    Copy to clipboard
+</button>
+
+</p>
+
+<p>
+<!-- Target -->
+<input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+
+<!-- Trigger -->
+<button class="btn"
+        data-toggle = "popover"
+        title="Copied to the clipboard!"
+        data-content="Click again to de-select."
+        data-clipboard-target="#foo">
+    <img src="{% static 'images/clippy.svg'%}" alt="Copy to clipboard" width="20px">
+</button>
+
+</p>
+
+<table class="clipboardclass table table-responsive table-striped
+      table-bordered table-hover table-condensed">
+    <tr>
+        <td class="clipboardclass"
+            data-clipboard-text="ggggggggggggggggg"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="">
+            row 1 column 1
+        </td>
+        <td class="clipboardclass"
+            data-clipboard-text="hhhhhhhhhhhhhhhhhhhh"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="">
+            row 1 column 2
+        </td>
+        <td>row 1 column 3</td>
+        <td>row 1 column 4</td>
+    </tr>
+
+    <tr>
+        <td>row 2 column 1</td>
+        <td>row 2 column 2</td>
+        <td>row 2 column 3</td>
+        <td>row 2 column 4</td>
+    </tr>
+</table>
+
+
+
+    <script>
+        $('.clipboardclass').tooltip({
+          trigger: 'click',
+          placement: 'bottom'
+        });
+
+        function setTooltip(btn, message) {
+          btn.tooltip('hide')
+            .attr('data-original-title', message)
+            .tooltip('show');
+        }
+
+        function hideTooltip(btn) {
+          setTimeout(function() {
+            btn.tooltip('hide');
+          }, 20000);
+        }
+
+        var clipboard = new Clipboard('.clipboardclass');
+
+        clipboard.on('success', function(e) {
+            var btn = $(e.trigger);
+          setTooltip(btn, 'Copied!');
+          hideTooltip(btn);
+        });
+    </script>

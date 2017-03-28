@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block head_title %}Change User Information
+{% endblock %}
+
+{% block content %}
+    <h1>Change User Information</h1>
+
+    {% if form.errors %}
+        {% for error in form.non_field_errors %}
+            <div class="isa_error">
+                <i class="fa fa-times-circle"></i>
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="isa_error">
+                    <i class="fa fa-times-circle"></i>
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action=
+            "{% url "user_change" %}">
+        {% csrf_token %}
+        <div class="form-group isa_warning">
+            <i class="fa fa-warning"></i>
+            <span>If you change
+            <strong>User Name</strong>,
+            the system will automatically logout you.
+            You must login again.</span>
+        </div>
+        <div class="form-group">
+            <label for="id_username" class="control-label">
+                User Name:</label>
+            <input type="text" class=""
+                   placeholder="username"
+                   name="username"
+                   id="id_username"
+                   value="{{ passed_username }}"
+                   maxlength="150" autofocus>
+
+        </div>
+
+        <div class="form-group">
+            <label for="id_first_name" class="control-label">
+                First Name:
+            </label>
+            <input type="text" class=""
+                   placeholder="first name"
+                   name="first_name"
+                   id="id_first_name"
+                   value="{{ passed_first_name }}"
+                   maxlength="30" autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="id_last_name" class="control-label">
+                Last Name:
+            </label>
+            <input type="text" class=""
+                   placeholder="last name"
+                   name="last_name"
+                   id="id_last_name"
+                   value="{{ passed_last_name }}"
+                   maxlength="30" autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="id_email" class="control-label">
+                Email:
+            </label>
+            <input type="text" class=""
+                   placeholder="email"
+                   name="email"
+                   id="id_email"
+                   value="{{ passed_email }}"
+                   maxlength="254" autofocus>
+        </div>
+
+        <button class="btn btn-primary" type="submit" name="action">
+            Change User Information
+        </button>
+
+        <a class = "btn btn-success text-center"
+        href="{% url "main" %}">
+        Back to the Main Page</a>
+
+    </form>
+{% endblock %}

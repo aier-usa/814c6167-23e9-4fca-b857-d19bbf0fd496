@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+    <div class="row">
+            <p class="col-md-offset-2 col-md-8">
+                <strong>
+                    Easy to understand.</strong>
+            Password hints are not passwords. They are used by
+            computer users to facilitate the easy memorization of
+            real passwords. Passwords are not randomly chosen. Instead,
+            they are associated with "familiar concepts" that computer
+            users can remember. Those "familiar concepts" becomes password
+            hints. A password hint is valuable to the creator and it is
+            useless to others. A password hint is similar to ciphertext
+            (encrypted message)</p>
+
+        <p class="col-md-offset-2 col-md-8">
+            <strong>
+            No mathematical formula.</strong>
+            Relax! Password management does not need to get mathematics
+        involved.</p>
+        <p class="col-md-offset-2 col-md-8">
+            <strong>
+                No encryption key.</strong>
+        Since we don't use encryption for our work, our users
+        never need to worry about how to manage those keys. There
+        is NO master key stored in our server. We don't need to
+        take extra steps to protect our master keys.</p>
+        <p class="col-md-offset-2 col-md-8">
+            <strong>
+                Triple relationship.</strong>
+            We store three pieces of information: website, username
+            and password. In order to access sensitive information
+            stored in a website, all three must be present. Instead
+            of guarding password safely, you can free your password
+            and guard website or username. You can use hints for
+            all three pieces of information.
+        </p>
+            <p class="col-md-offset-2 col-md-8">
+            <strong>
+                Partial Sharing.</strong>
+            A user can have many password entries. Some of them can
+                find more than 100 entries. Our system allows an owner to
+                share a selected portion of the entries to trusted
+                partners.
+
+        </p>
+    </div>
+
+{% endblock %}

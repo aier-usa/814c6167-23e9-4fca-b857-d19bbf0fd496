@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+    <div class="row">
+            <p class="col-md-offset-2 col-md-8">
+                How much money does Bill Gates have in
+                his bank accounts? We wish we know the answer
+                because it is a piece of news. Unfortunately,
+                the answer is very difficult to get unless
+                extreme and illegal hacking activities are
+                employed. In order for us to understand
+                two factor authentication. We need to know the
+                concept of computer access control.
+
+                Suppose that we have got a piece of
+                information about Bill Gates' account: He stores
+                his money at chase.com. We are lucky in one aspect.
+                However, we still need two more pieces of
+                information: username and password.
+                computer access control is a fancy term used for
+                a simple question: Are you Bill Gates? I don't know
+                whether you are Bill Gates or someone else.
+                I will let you in as long as you can provide
+                evidence proving that you are who you said you are.
+                Evidence falls into following categories: knowledge
+                (something they know, typical examples are username,
+                password and Personal Identification Number),
+                possession (something they have, but others
+                do not have), and  physical characteristic(
+                something they are, but others are not. For example,
+                everyone's fingerprint is unique).
+                Two factor authentication (also known as 2FA) is a
+                method of confirming a user's claimed
+                identity by utilizing a combination of
+                two different pieces of evidence.
+                Two-factor authentication is a type
+                of multi-factor authentication.
+
+                A good example for two factor authentication
+                from everyday life is
+                the withdrawing of money from a cash
+                machine; only the correct
+                combination of a bank card
+                (something that the user possesses)
+                and a PIN (personal identification
+                number, something that
+                the user knows) allows
+                the transaction to be carried out.
+            </p>
+
+            <p class="col-md-offset-2 col-md-8">
+                Possessions and physical characteristic
+                can add additional layers to security protection.
+                Possessions include tokens that only authorized
+                users can have. For example, a RSA SecurID token
+                is something that is owned by a company and given to
+                a particular computer user to plug into the computer. In
+                order to use authentication based on physical characteristic,
+                we need to have dedicated devices to read those physical
+                characteristics.
+            </p>
+            <p class="col-md-offset-2 col-md-8">
+                Nowadays, mobile phone has been used as the
+                authentication tool. The problems
+                with mobile phone are includes:
+                    </p>
+                <ul class="col-md-offset-2 col-md-8">
+                  <li>Mobile phones can be stolen,
+                      potentially allowing the thief to
+                      gain access into the user's accounts
+                  </li>
+                  <li>
+                      The mobile phone must be carried by
+                      the user, charged, and kept in range
+                      of a cellular network whenever
+                      authentication might be necessary.
+                  </li>
+                  <li>
+                      If the phone is unable to display
+                      messages, such as if it becomes
+                      damaged or shuts down for an update
+                      or due to temperature extremes
+                      (e.g. winter exposure), access
+                      is often impossible without backup plans.
+                   </li>
+
+                    <li>The user must share their personal
+                        mobile number with the provider,
+                        reducing personal privacy and
+                        potentially allowing spam.
+                    </li>
+
+                     <li>Text messages to mobile phones
+                        using SMS are insecure and
+                        can be intercepted. The token can
+                        thus be stolen and used by third
+                        parties.
+                     </li>
+
+                 </ul>
+
+
+    </div>
+
+
+{% endblock %}

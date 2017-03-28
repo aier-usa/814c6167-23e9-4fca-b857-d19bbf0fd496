@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head_title %}Import Info (User, Password, AccessPoint)
+{% endblock %}
+
+{% block content %}
+    <h1>Import Info
+        (User, Password, AccessPoint)</h1>
+
+    <form method="POST" action=
+            "{% url "import_one_user_info" %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="action">Import Now</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,134 @@
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+
+.errorlist {
+        /*
+        color: rgb(255,0,0);
+        */
+        color: darkred;
+}
+
+.fontsize180p {
+    font-size: 180%;
+}
+
+
+.fontsize150p {
+    font-size: 150%;
+}
+
+.fontsize125p {
+    font-size: 125%;
+}
+
+.fontsize120p {
+    font-size: 120%;
+}
+
+
+.color_red {
+    color: red;
+}
+
+.color_green {
+    color: green
+}
+a, .insidenav,
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    font-family: "Trebuchet MS", Arial, sans-serif !important;
+}
+p {
+    font-family:Verdana, Arial, sans-serif !important;
+    font-size:115% !important;
+    line-height:150%;
+}
+
+table {
+        font-family:Verdana, Arial, sans-serif !important;
+}
+
+.hide-some {
+  width:250px;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space: nowrap;
+}
+.hide-some:hover {
+  overflow:visible;
+}
+
+.bs_regular_red_color {
+    /* color: #d9534f !important; */
+    color: #483d8b !important;
+}
+
+.bs_regular_blue_color {
+    color: blue !important;
+}
+
+.bs_regular_orange_color {
+    color: orange !important;
+}
+
+.navbar-ihatepassword {
+    color:#fff !important;
+}
+
+.bs_selected {
+    /* #000 is for Black*/
+    color: #000!important;
+    /* #fff is for White */
+    background-color: #fff!important;
+}
+.navbar-ihatepassword:hover {
+    /* #000 is for Black*/
+    color: #000!important;
+    /* #fff is for White */
+    background-color: #fff!important;
+}
+
+.bs-navbar-bg-color {
+    /* background-color:lightgreen; !important; */
+    /*    green color from www.w3schools.com */
+    background-color: rgb(76, 175, 80) !important;
+}
+
+.bs-white-text-color {
+    color: white; !important;
+}
+
+
+.spacing-table tr {
+          padding: 5px !important;
+}
+
+.isa_info, .isa_success, .isa_warning, .isa_error {
+margin: 10px 0px;
+padding:12px;
+}
+.isa_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.isa_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.isa_warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.isa_error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+    margin:10px 22px;
+    font-size:2em;
+    vertical-align:middle;
+}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div>
+        <h3 class="text-center">Use this form to create a new access point.
+        Clicking on "Back to the access point list"
+            does not create anything.</h3>
+    </div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <p>
+        {{ form.non_field_errors  }}
+    </p>
+    <p>
+        {{ form.errors.name }}
+        <label for="id_name">Name:
+        </label>
+        <input id="id_name" maxlength="255"
+               name="name" type="text" required />
+        <span class="helptext">
+            Format: First character must be a letter.
+            Others are alphanumeric
+        </span>
+    </p>
+
+    <p>
+        {{ form.errors.purpose }}
+        <label for="id_purpose">Purpose:
+        </label> <input id="id_purpose" maxlength="255"
+                        name="purpose" type="text" />
+        <span class="helptext">
+            Stated purpose. Examples:
+            for kids, for colleagues,
+            public access
+        </span>
+    </p>
+    <p>
+        {{ form.errors.creationDT }}
+        <label for="id_creationDT">Created On:
+        </label> <input id="id_creationDT" name="creationDT"
+                        type="text" value="{% now 'Y-m-d H:i:s'%}" />
+        <span class="helptext">
+            Creation Date/Time.
+            Format: YYYY-MM-DD HH:MM:SS
+        </span>
+    </p>
+    <p>
+        {{ forms.errors.modificationDT }}
+        <label for="id_modificationDT">Modified On:
+        </label>
+        <input id="id_modificationDT" name="modificationDT"
+               type="text" value="{% now 'Y-m-d H:i:s'%}" />
+        <span class="helptext">
+            Modification Date/Time.
+            Format: YYYY-MM-DD HH:MM:SS
+        </span>
+    </p>
+
+    <input class="btn btn-primary" type="submit" value="Save" />
+</form>
+
+    <a class="text-center btn btn-primary"
+       href="{% url "access_point_list" %}">
+    Back to the access point list</a>
+
+{% endblock %}

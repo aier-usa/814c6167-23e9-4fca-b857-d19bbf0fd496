@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>
+        Invalid login information is provided.
+        Please try again.
+    </h3>
+    <p>
+        <a class="btn btn-primary"
+           href="{% url 'login' %}">
+            Back to Login Page
+        </a>
+    </p>
+    <p>
+        <a class="btn btn-info"
+           href="{% url 'main' %}">
+            Back to Main Page
+        </a>
+    </p>
+{% endblock %}

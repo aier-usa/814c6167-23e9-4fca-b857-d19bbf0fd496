@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <div class="">
+        <h1 class="text-center">Access points that I can
+             reveal passwords to
+        </h1>
+    </div>
+
+    <p class="text-center fontsize180p">
+        Max number of access points created by our champion:
+        {{ max_num_ap }}<br/>
+        Your own number of access points:
+        {{ your_own_num_ap }}
+    </p>
+
+        <p class="text-center">
+            <a class="btn btn-primary"
+               href="{% url "access_point_create" %}">
+                Create a New Access Point
+            </a>
+            or
+            <a class = "btn btn-primary"
+                href="{% url "main" %}">
+                Back to the Main Page
+            </a>
+        </p>
+
+      <table class="table table-responsive table-striped
+      table-bordered table-hover table-condensed">
+        <thead>
+          <tr >
+            <th class="text-center">
+                Name
+            </th>
+            <th class="text-center">
+                Purpose
+            </th>
+            <th class="text-center">
+                # of Passwords
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Choices: More, Edit, Delete or Show Me for showing pwds associated with the AP">
+                    Actions
+                </a>
+            </th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                <td class="text-center">
+{#                    {{ item.name | truncatechars:40}}#}
+                    {% if item.name|length >= 40 %}
+                         <a data-toggle="tooltip"
+                             data-placement="auto"
+                             title="{{ item.name }}">
+                             {{ item.name | truncatechars:40 }}
+                         </a>
+                    {% else %}
+                        {{ item.name }}
+                    {% endif %}
+
+                </td>
+                <td class="text-center">
+{#                    {{ item.purpose | truncatechars:40}}#}
+                    {% if item.purpose|length >= 40 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title="{{ item.purpose }}">
+                         {{ item.purpose | truncatechars:40 }}
+                         </a>
+                    {% else %}
+                        {{ item.purpose }}
+                    {% endif %}
+
+                </td>
+                <td class="text-center">
+                    {{ item.num_of_pwds}}
+                </td>
+
+                <td class="text-center">
+                    <a class ="btn btn-primary"
+                       href="{% url "access_point_detail" pk=item.id %}">
+                        <i class="icon-lg ion-more"
+                          title="More...">
+                       </i>
+                    </a>
+                    <a class ="btn btn-warning"
+                       href="{% url "access_point_update" pk=item.id %}">
+                        <i class="icon-lg ion-edit"
+                          title="Edit">
+                       </i>
+                    </a>
+                    <a class ="btn btn-danger"
+                       href="{% url "access_point_delete" pk=item.id %}">
+                       <i class="icon-lg ion-close-round"
+                          title="Delete">
+                       </i>
+                    </a>
+                    <a class ="btn btn-success"
+                       href="{% url "show_me_list" nameAP=item.name %}">
+                        <i class="icon-lg ion-ios-monitor"
+                          title="Show me the passwords">
+                       </i>
+                    </a>
+                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+        <p class="text-center">
+            <a class="btn btn-primary"
+               href="{% url "access_point_create" %}">
+                Create a New Access Point
+            </a>
+            or
+            <a class = "btn btn-primary"
+                href="{% url "main" %}">
+                Back to the Main Page
+            </a>
+        </p>
+
+
+{% endblock %}
+

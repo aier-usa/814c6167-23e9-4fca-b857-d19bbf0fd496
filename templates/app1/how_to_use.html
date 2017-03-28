@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="row">
+        <h2>How to try the system?</h2>
+
+            <p class="col-md-offset-2 col-md-8">
+            Please use any of the following credentials
+            to play with the system.
+            Change some, add some, even delete some.
+            They are actual entries used by Max Li.</p>
+
+                <p class="col-md-offset-2 col-md-8 fontsize180p">
+                    ENJOY!
+                </p>
+
+    <p class="col-md-offset-2 col-md-8">
+              <table class="table table-responsive table-striped
+      table-bordered table-hover table-condensed">
+        <thead>
+          <tr >
+            <th class="text-center">
+                username
+            </th>
+
+              <th class="text-center">
+              password
+            </th>
+
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+             <td class="text-center">
+                 demo1969
+            </td>
+            <td class="text-center">
+                ihatepassword
+            </td>
+            </tr>
+            <tr>
+             <td class="text-center">
+                 demo1970
+            </td>
+            <td class="text-center">
+                ihatepassword
+            </td>
+            </tr>
+
+        </tbody>
+      </table>
+
+
+        <p class="col-md-offset-2 col-md-8">We provide an easy solution
+                to the hard problem of password fatigue syndrome.
+            Instead of stored encrypted password or plain password,
+            our system stores password hints so that computer
+            users have peace of mind.
+        </p>
+        <p class="col-md-offset-2 col-md-8">Access points are public access
+            entry point through which a computer user can make a password
+            entry "public".
+    </p>
+
+</div>
+
+
+<div class="row">
+    <h2>Main page when you open the site</h2>
+        <img class="img-responsive"
+             src="{% static "images/before_login.png" %}">
+</div>
+
+<div class="row">
+    <h1>This is the register page</h1>
+        <img class="img-responsive"
+             src="{% static "images/register.png" %}">
+</div>
+
+<div class="row">
+    <h2>After you have registered,
+        you can log into the system</h2>
+        <img class="img-responsive"
+             src="{% static "images/login.png" %}">
+</div>
+
+<div class="row">
+    <h2>After you have logged in,
+        you can click on Passwords button to
+        see all your password entries</h2>
+        <img class="img-responsive"
+             src="{% static "images/password.png" %}">
+</div>
+
+<div class="row">
+    <h2>For one password entry,
+        you can assign it to an access point for
+        public view. BE CAREFUL.
+        Once you have assigned,
+        everyone in the world can view it.</h2>
+        <img class="img-responsive"
+             src="{% static "images/assign.png" %}">
+</div>
+
+<div class="row">
+    <h2>Do you want to see all your access points?</h2>
+        <img class="img-responsive"
+             src="{% static "images/accesspoint.png" %}">
+</div>
+
+<div class="row">
+    <h2>For each access point, you can view it through
+    ihatepassword.com/showme/XYZ.
+        XYZ is the access point
+        that you have created before.</h2>
+        <img class="img-responsive"
+             src="{% static "images/showme.png" %}">
+</div>
+{% endblock %}

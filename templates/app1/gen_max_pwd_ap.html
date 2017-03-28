@@ -1,0 +1,15 @@
+{%  extends "base.html" %}
+
+{% block content %}
+    <div>
+        <h3 class="text-center">
+            Successfully finished generating max number of passwords and access points.
+        </h3>
+    </div>
+
+    <a class="btn btn-info text-center"
+       href="{% url "password_list" %}">
+        Back to the password list
+    </a>
+
+{% endblock %}

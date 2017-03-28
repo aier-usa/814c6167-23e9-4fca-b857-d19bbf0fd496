@@ -1,0 +1,152 @@
+{% load staticfiles %}
+
+
+<head>
+
+    <link rel="icon" type="image/x-icon"
+          href="{% static 'images/drawing-svg-i-hate-passwordv4.ico' %}" />
+
+    <link href="{% static 'bootstrap3.3.6/css/bootstrap.min.css' %}"
+          rel="stylesheet" media="screen">
+    <link href="{% static 'css/site.css' %}"
+          rel="stylesheet" media="screen">
+    <link rel="stylesheet"
+          href=
+          "//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+        >
+</head>
+
+<body>
+
+<div class="navbar navbar-default">
+    <div class="container-fluid bs-navbar-bg-color">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#bootstrap-navbar-collapse-1"
+                aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+        <a class="navbar-brand navbar-ihatepassword"
+           href="{% url "main" %}">
+            <img class="img-responsive"
+                 src="{% static "images/drawing-svg-i-hate-passwordv4.svg" %}"
+                 width="50px"
+            >
+        </a>
+
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse"
+         id="bootstrap-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+              <li>
+                  <a class="fontsize125p navbar-ihatepassword"
+                     href="{% url "how_to_use" %}">How to use?</a>
+             </li>
+
+              <li>
+                  <a class="fontsize125p navbar-ihatepassword"
+                      href="{% url "benefits" %}">
+                      Benefits</a>
+             </li>
+
+              <li>
+                    <a class="fontsize125p navbar-ihatepassword"
+                     href="{% url "our_story" %}">
+                    Our story</a>
+              </li>
+
+         <li class="dropdown">
+          <a href="#" class="fontsize125p navbar-ihatepassword dropdown-toggle"
+             data-toggle="dropdown"
+             role="button"
+             aria-expanded="false">Alternatives? <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url "two_factor_authentication" %}">
+                Two Factor Authentication</a></li>
+            <li><a href="#">Multiple Factor Authentication</a></li>
+            <li><a href="#">QR Code</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Fingerprint</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url "our_story" %}">
+                Our Story (again)</a></li>
+             <li><a href="{% url "encryption" %}">Encryption</a></li>
+
+          </ul>
+         </li>
+          </ul>
+
+
+          <ul class="nav navbar-nav pull-right">
+
+        {% if user.is_authenticated %}
+            <li>
+                <a class="fontsize125p navbar-ihatepassword "
+                   href="{% url "password_list" %}">
+                    Passwords</a>
+            </li>
+            <li>
+                <a class="fontsize125p navbar-ihatepassword "
+                   href="{% url "access_point_list" %}">
+                    Access Points</a>
+            </li>
+            <li>
+                <a class="fontsize125p navbar-ihatepassword "
+                   href="{% url "partial_sharing" %}">
+                    Partial Sharing</a>
+            </li>
+        {% else %}
+        {% endif %}
+            {% if user.is_authenticated %}
+                <li>
+                <a class="fontsize125p navbar-ihatepassword"
+                        href="{% url "accounts_profile" %}">
+                    Hi,<span class="bs_regular_blue_color">
+                    {{ user.username }}</span> </a>
+                </li>
+                <li>
+                    <a class="fontsize125p navbar-ihatepassword"
+                   href="{% url "logout" %}">Logout</a>
+                </li>
+            {% else %}
+                <li>
+                    <a class="fontsize125p navbar-ihatepassword"
+                    href="{% url "register" %}">Register</a>
+                </li>
+                <li>
+                    <a class="fontsize125p navbar-ihatepassword"
+                    href="{% url "login" %}">Login</a>
+                </li>
+            {% endif %}
+
+
+    </ul>
+        </div><!-- /.navbar-collapse -->
+    </div> <!-- /.container-fluid -->
+</div>
+<!-- The above is from http://www.tangowithdjango.com/book/chapters/bootstrap.html -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'bootstrap3.3.6/js/jquery-2.2.4.min.js' %}">
+</script>
+<script src="{% static 'bootstrap3.3.6/js/bootstrap.min.js' %}">
+</script>
+
+</body>

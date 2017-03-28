@@ -1,0 +1,350 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <link
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <script
+            src=
+        "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js">
+    </script>
+
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+    </script>
+
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+    </script>
+
+    <p class="text-center">Partial Sharing of Passwords:
+            to others AND from others
+    </p>
+    <p class="text-center">
+        <a class = "btn btn-primary"
+         href="{% url "main" %}">
+        Back to the Main Page</a>
+    </p>
+
+
+    <div class="panel panel-primary">
+  <div class="panel-heading">
+      <strong>to others:</strong>
+      I am the owner of the following.
+         I shared them with other users.</div>
+  <div class="panel-body">
+      <table class="table table-responsive table-striped
+      table-bordered table-hover table-condensed">
+        <thead>
+          <tr >
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Website, computer or organization name">
+                    Website
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Username. Some sites use email as username">
+                    Username
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Actual password or password hint. Anything that helps you to remember.">
+                    Password
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "I want to share the entry with others.">
+                    Trusted Partner/User Name
+                </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in to_others %}
+                <tr>
+                <td class="text-center">
+{#                    {{ item.website | truncatechars:25 }}#}
+{#                    <div class="hide-some">{{ item.website }}</div>#}
+
+                    {% if item.website|length >= 25 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title=
+                         "{{ item.website }}">
+                         {{ item.website | truncatechars:25 }}
+                         </a>
+                    {% else %}
+                        {{ item.website }}
+                    {% endif %}
+                    <button class="clipboardclass"
+                            data-clipboard-text=
+                            "{{ item.website }}">
+                        <img data-toggle="tooltip"
+                                data-placement="right"
+                                title="Click to copy to the clipboard"
+                                src="{% static 'images/clippy.svg'%}"
+                             alt="Copy to clipboard" width="15px"
+                        >
+                    </button>
+
+                </td>
+                <td class="text-center">
+{#                    {{ item.username | truncatechars:25 }}#}
+                    {% if item.username|length >= 25 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title=
+                         "{{ item.username }}">
+                         {{ item.username | truncatechars:25 }}
+                         </a>
+                    {% else %}
+                        {{ item.username }}
+                    {% endif %}
+                    <button class="clipboardclass"
+                            data-clipboard-text=
+                            "{{ item.username }}">
+                        <img data-toggle="tooltip"
+                                data-placement="right"
+                                title="Click to copy to the clipboard"
+                                src="{% static 'images/clippy.svg'%}"
+                             alt="Copy to clipboard" width="15px"
+                        >
+                    </button>
+                </td>
+                <td class="text-center">
+{#                    {{ item.password | truncatechars:25 }}#}
+                    {% if item.password|length >= 25 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title=
+                         "{{ item.password }}">
+                         {{ item.password | truncatechars:25 }}
+                         </a>
+                    {% else %}
+                        {{ item.password }}
+                    {% endif %}
+                    <button class="clipboardclass"
+                            data-clipboard-text=
+                            "{{ item.password }}">
+                        <img data-toggle="tooltip"
+                                data-placement="right"
+                                title="Click to copy to the clipboard"
+                                src="{% static 'images/clippy.svg'%}"
+                             alt="Copy to clipboard" width="15px"
+                        >
+                    </button>
+
+                </td>
+
+                <td class="text-center">
+{#                    {{ item.password | truncatechars:25 }}#}
+                    {% if item.trusted_partner|length >= 25 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title=
+                         "{{ item.trusted_partner }}">
+                         {{ item.trusted_partner | truncatechars:25 }}
+                         </a>
+                    {% else %}
+                        {{ item.trusted_partner }}
+                    {% endif %}
+                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+
+  </div>
+</div>
+
+
+    <div class="panel panel-danger">
+  <div class="panel-heading">
+      <strong>from others:</strong>
+      Other users are owners of the following.
+      Other users share those with me.</div>
+  <div class="panel-body">
+      <table class="table table-responsive table-striped
+      table-bordered table-hover table-condensed">
+        <thead>
+          <tr >
+           <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Name of user who is willing to share password with me">
+                    Owner/User Name
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Website, computer or organization name">
+                    Website
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Username. Some sites use email as username">
+                    Username
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Actual password or password hint. Anything that helps you to remember">
+
+                    Password
+                </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in from_others %}
+                <tr>
+                <td class="text-center">
+                    {% if item.owner_name|length >= 25 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title=
+                         "{{ item.owner_name }}">
+                         {{ item.owner_name | truncatechars:25 }}
+                         </a>
+                    {% else %}
+                        {{ item.owner_name }}
+                    {% endif %}
+
+                </td>
+                <td class="text-center">
+                    {% if item.website|length >= 25 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title=
+                         "{{ item.website }}">
+                         {{ item.website | truncatechars:25 }}
+                         </a>
+                    {% else %}
+                        {{ item.website }}
+                    {% endif %}
+                    <button class="clipboardclass"
+                            data-clipboard-text=
+                            "{{ item.website }}">
+                        <img data-toggle="tooltip"
+                                data-placement="right"
+                                title="Click to copy to the clipboard"
+                                src="{% static 'images/clippy.svg'%}"
+                             alt="Copy to clipboard" width="15px"
+                        >
+                    </button>
+                </td>
+                <td class="text-center">
+                    {% if item.username|length >= 25 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title=
+                         "{{ item.username }}">
+                         {{ item.username | truncatechars:25 }}
+                         </a>
+                    {% else %}
+                        {{ item.username }}
+                    {% endif %}
+                    <button class="clipboardclass"
+                            data-clipboard-text=
+                            "{{ item.username }}">
+                        <img data-toggle="tooltip"
+                                data-placement="right"
+                                title="Click to copy to the clipboard"
+                                src="{% static 'images/clippy.svg'%}"
+                             alt="Copy to clipboard" width="15px"
+                        >
+                    </button>
+                </td>
+                <td class="text-center">
+                    {% if item.password|length >= 25 %}
+                         <a data-toggle="tooltip"
+                         data-placement="auto"
+                         title=
+                         "{{ item.password }}">
+                         {{ item.password | truncatechars:25 }}
+                         </a>
+                    {% else %}
+                        {{ item.password }}
+                    {% endif %}
+                    <button class="clipboardclass"
+                            data-clipboard-text=
+                            "{{ item.password }}">
+                        <img data-toggle="tooltip"
+                                data-placement="right"
+                                title="Click to copy to the clipboard"
+                                src="{% static 'images/clippy.svg'%}"
+                             alt="Copy to clipboard" width="15px"
+                        >
+                    </button>
+                </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+  </div>
+</div>
+
+    <p class="text-center">
+        <a class = "btn btn-primary"
+         href="{% url "main" %}">
+        Back to the Main Page</a>
+    </p>
+
+
+    <script>
+        $('.clipboardclass').tooltip({
+          trigger: 'click',
+          placement: 'right'
+        });
+
+        function setTooltip(btn, message) {
+          btn.tooltip('hide')
+            .attr('data-original-title', message)
+            .tooltip('show');
+        }
+
+        function hideTooltip(btn) {
+          setTimeout(function() {
+            btn.tooltip('hide');
+          }, 2000);
+        }
+
+        var clipboard = new Clipboard('.clipboardclass');
+
+        clipboard.on('success', function(e) {
+            var btn = $(e.trigger);
+          setTooltip(btn, 'Copied!');
+          hideTooltip(btn);
+        });
+    </script>
+{% endblock %}

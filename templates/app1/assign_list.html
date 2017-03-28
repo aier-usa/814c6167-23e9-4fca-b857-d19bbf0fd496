@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h3 class="text-center">
+            Associate the password with (public) access points
+            and (private) trusted partners (other users)
+        </h3>
+    </div>
+    <form action="link_together" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="password_id"
+               value="{{ password_id }}">
+        <input type="hidden" name = "username"
+               value="{{ user.username }}">
+
+
+
+
+    <div class="panel panel-primary">
+  <div class="panel-heading">
+      Associate the password with (public) access points
+  </div>
+  <div class="panel-body">
+
+        <p class="text-left">
+        Note: If the entry has been checked already,
+        it means that the password has been
+        assigned to the access point.
+        You can "uncheck" it if you don't want to associate
+        the password with the access point anymore.
+        For example, if a school year is over, you
+        can cut off the relationship between a course
+        password and an access point for a group
+        of students.
+        </p>
+        <table class="table table-responsive table-striped
+        table-bordered table-hover table-condensed">
+            <thead>
+              <tr >
+                <th>
+                    Check to select
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Purpose
+                </th>
+                <th>
+                    Created on
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in object_list %}
+                    <tr>
+
+                    {% if item.id in used_ap_ids %}
+                        <td><input type="checkbox"
+                               name="ap_id_{{ item.id }}"
+                               value="{{ item.id }}"
+                               checked="checked">
+                        </td>
+                    {% else %}
+                        <td><input type="checkbox"
+                               name="ap_id_{{ item.id }}"
+                               value="{{ item.id }}"
+                               >
+                        </td>
+                    {% endif %}
+
+
+                    <td>
+                        {{ item.id}}
+                    </td>
+                    <td>
+                        {% if item.name|length >= 40 %}
+                         <a data-toggle="tooltip"
+                             data-placement="auto"
+                             title="{{ item.name }}">
+                             {{ item.name | truncatechars:40 }}
+                         </a>
+                    {% else %}
+                        {{ item.name }}
+                    {% endif %}
+
+                    </td>
+                    <td>
+                        {% if item.purpose|length >= 40 %}
+                         <a data-toggle="tooltip"
+                             data-placement="auto"
+                             title="{{ item.purpose }}">
+                             {{ item.purpose | truncatechars:40 }}
+                         </a>
+                    {% else %}
+                        {{ item.purpose }}
+                    {% endif %}
+                    </td>
+                    <td>
+                    {% if item.creationDT|length >= 40 %}
+                         <a data-toggle="tooltip"
+                             data-placement="auto"
+                             title="{{ item.creationDT }}">
+                             {{ item.creationDT | truncatechars:40 }}
+                         </a>
+                    {% else %}
+                        {{ item.creationDT }}
+                    {% endif %}
+                    </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+  </div>
+</div>
+
+
+
+<div class="panel panel-danger">
+  <div class="panel-heading">Associate the password with trusted partners</div>
+  <div class="panel-body">
+        <p>The following are trusted partner(or user) that you have shared
+    the password entry with. You can check or uncheck.</p>
+            <table class="table table-responsive table-striped
+        table-bordered table-hover table-condensed">
+            <thead>
+              <tr >
+                <th>
+                    Check to select
+                </th>
+                <th>
+                    User ID
+                </th>
+                <th>
+                    User Name
+                </th>
+                <th>
+                    Date Joined
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in used_trusted_partner_users %}
+                    <tr>
+                        <td><input type="checkbox"
+                               name="tp_user_id_{{ item.id }}"
+                               value="{{ item.id }}"
+                               checked="checked">
+                        </td>
+                        <td>
+                            {{ item.id}}
+                        </td>
+                        <td>
+                            {% if item.username|length >= 40 %}
+                                 <a data-toggle="tooltip"
+                                     data-placement="auto"
+                                     title="{{ item.username }}">
+                                     {{ item.username | truncatechars:40 }}
+                                 </a>
+                            {% else %}
+                                {{ item.username }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if item.date_joined|length >= 40 %}
+                                 <a data-toggle="tooltip"
+                                     data-placement="auto"
+                                     title="{{ item.date_joined }}">
+                                     {{ item.date_joined | truncatechars:40 }}
+                                 </a>
+                            {% else %}
+                                {{ item.date_joined }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <label>Please enter valid user names:</label>
+    <input name="trusted_partner_usernames"
+           id="trusted_partner_usernames"
+           type="text"
+           size="70"
+           placeholder =
+                   "One or more VALID user names, separated by a comma (,)"/>
+  </div>
+</div>
+
+        <p class="text-center">
+            <input class ="btn btn-success"
+                   type="submit"
+               value="Associate with access points and trusted partners">
+            or
+            <a class = "btn btn-primary text-center"
+               href="{% url "password_list" %}">
+                Cancel and go back to password list
+            </a>
+        </p>
+    </form>
+{% endblock %}
