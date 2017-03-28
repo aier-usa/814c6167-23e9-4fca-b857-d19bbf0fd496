@@ -28,7 +28,11 @@ class PasswordList(LoginRequiredMixin, ListView):
         #     total=Count("user_id")).order_by("-total")
         # context['max_num_pwd'] = item[0].get("total")
         item = MaxNumPassword.objects.all().order_by("-gen_date_time")
-        context['max_num_pwd'] = item[0].max_num_pwd
+
+        if not item.exists():
+            context['max_num_pwd'] = 0
+        else:
+            context['max_num_pwd'] = item[0].max_num_pwd
 
         uid = self.request.user.id
         temp_variable = Password.objects.filter(
