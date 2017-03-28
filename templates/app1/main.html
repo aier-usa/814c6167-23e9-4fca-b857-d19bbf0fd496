@@ -5,71 +5,17 @@
 
     <div>
         <div class="row">
-            <div class="col-md-6">
-                <h2>I have a LOVE/HATE relationship with password.</h2>
-                <div class="fontsize150p">
-                I LOVE it because it is easy and simple.
-                Think about one alternative to password:
-                a biometric approach based on fingerprints. There is
-                NO WAY to reset fingerprints if the database is hacked.
-                I HATE it because it is so annoying. I know that an extremely long
-                password policy is bad since it forces people to write it
-                down on paper.
-                    </div>
+            <div class="col-md-4">
+                Step 1: Take a picture of a receipt or scan a image of a receipt.
             </div>
-            <div class="col-md-6">
-                <img class="img-responsive"
-                     src="{% static "images/love_hate.jpg" %}">
+            <div class="col-md-4">
+                Step 2: Upload the picture or scanned image.
+            </div>
+            <div class="col-md-4">
+                Step 3: Redeem the total amount and enjoy eyeglass-free life style!
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <img class="img-responsive"
-                     src="{% static "images/pain-in-neck.jpg" %}">
-            </div>
 
-            <div class="col-md-6">
-                <h2>Pain in the neck.</h2>
-                <div class="fontsize150p">
-                    Since passwords are supposed to be private, I don't talk about
-                    the pain with others.</div>
-
-
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h2>I try to memorize all passwords. It is in vain.</h2>
-                <div class="fontsize150p">
-                    There are so many passwords to remember and
-                    the number of passwords that I use never decreases.
-                    Do you want me to remember so many passwords?
-                    My brain is not big enough. </div>
-            </div>
-            <div class="col-md-6">
-                <img class="img-responsive"
-                     src="{% static "images/memorize_in_vain.jpg" %}">
-            </div>
-
-
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-6">
-                <img class="img-responsive"
-                     src="{% static "images/Xiaoli_Liu_Notebook.jpg" %}">
-            </div>
-
-            <div class="col-md-6">
-                <h2>To write them down in a notebook so yesterday...</h2>
-                <div class="fontsize150p">
-                    I can easily lose my notebook  and I cannot carry it with me
-                    all the time. What should I do? Help me...</div>
-            </div>
-        </div>
     </div>
 
 
@@ -77,13 +23,8 @@
 
     {% if user.is_authenticated %}
         <p>
-            <a class="btn btn-primary text-center"
-               href="{% url "password_list" %}">
-                Passwords</a>
 
-            <a class="btn btn-primary text-center"
-               href="{% url "access_point_list" %}">
-                Access Points</a>
+
         </p>
     {% else %}
     {% endif %}
