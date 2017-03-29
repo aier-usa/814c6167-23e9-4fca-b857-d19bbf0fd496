@@ -19,6 +19,8 @@ class Receipt(models.Model):
 
     photo = models.ImageField(storage=fs)
 
+    comment = models.CharField(max_length=200, blank=True)
+
     creation_DT = models.DateTimeField(null=True, blank=True)
     modification_DT = models.DateTimeField(null=True, blank=True)
 
