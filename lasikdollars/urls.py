@@ -20,27 +20,18 @@ from app1.views.main import (
     testing,
     main,
     how_to_use,
-    encryption,
     benefits,
     demo,
-    two_factor_authentication,
     our_story,
-    gen_max_pwd_ap,
-    partial_sharing)
+    gen_max_receipt)
 
-from app1.views.PasswordCreate import PasswordCreate
-from app1.views.PasswordUpdate import PasswordUpdate
-from app1.views.PasswordDelete import PasswordDelete
-from app1.views.PasswordDetail import PasswordDetail
-from app1.views.PasswordList import PasswordList
+from app1.views.ReceiptCreate import ReceiptCreate
+from app1.views.ReceiptUpdate import ReceiptUpdate
+from app1.views.ReceiptDelete import ReceiptDelete
+from app1.views.ReceiptDetail import ReceiptDetail
+from app1.views.ReceiptList import ReceiptList
 
-from app1.views.AccessPointCreate import AccessPointCreate
-from app1.views.AccessPointUpdate import AccessPointUpdate
-from app1.views.AccessPointDelete import AccessPointDelete
-from app1.views.AccessPointDetail import AccessPointDetail
-from app1.views.AccessPointList import AccessPointList
-from app1.views.ShowMeList import ShowMeList
-from app1.views.AssignList import AssignList
+
 from app1.views.ResetPasswordRequestView import \
     ResetPasswordRequestView
 
@@ -58,11 +49,6 @@ from app1.views.builtin_accounts import (
     accounts_password_reset_complete
 )
 
-from app1.views.export import export_one_user_info
-from app1.views.import_info import import_one_user_info
-from app1.views.password_and_partial_sharing import (
-    link_together)
-
 
 urlpatterns = [
 
@@ -71,27 +57,17 @@ urlpatterns = [
     url(r'^$', main, name='main'),
     url(r'^how-to-use/$', how_to_use, name="how_to_use"),
 
-    url(r'^encryption/$',
-        encryption,
-        name="encryption"),
-
     url(r'^benefits/$',
         benefits,
         name="benefits"),
 
-    url(r'^two-factor-authentication/$',
-        two_factor_authentication,
-        name="two_factor_authentication"),
 
     url(r'^our-story/$',
         our_story,
         name="our_story"),
 
-    url(r'^partial-sharing/$',partial_sharing,
-        name = "partial_sharing"),
 
-
-    url(r'^gen/$', gen_max_pwd_ap, name = "gen_max_pwd_ap"),
+    url(r'^gen/$', gen_max_receipt, name = "gen_max_receipt"),
 
     url(r'^admin/', admin.site.urls),
     url(r'^su/', admin.site.urls),
@@ -140,61 +116,24 @@ urlpatterns = [
         accounts_password_reset_complete,
         {}, name='password_reset_complete'),
 
-    url(r'^export_one_user_info/$',
-        export_one_user_info,
-        {}, name='export_one_user_info'),
+    url(r'receipts/$',
+        ReceiptList.as_view(),
+        name='receipts'),
 
-    url(r'^import_one_user_info/$',
-        import_one_user_info,
-        {}, name='import_one_user_info'),
+    url(r'receipt/(?P<pk>[0-9]+)/$',
+        ReceiptDetail.as_view(),
+        name='receipt_detail'),
 
-    url(r'password/$',
-        PasswordList.as_view(),
-        name='password_list'),
+    url(r'receipt/create/$',
+        ReceiptCreate.as_view(),
+        name='receipt_create'),
 
-    url(r'password/(?P<pk>[0-9]+)/$',
-        PasswordDetail.as_view(),
-        name='password_detail'),
+    url(r'receipt/(?P<pk>[0-9]+)/update/$',
+        ReceiptUpdate.as_view(),
+        name='receipt_update'),
 
-    url(r'password/create/$',
-        PasswordCreate.as_view(),
-        name='password_create'),
+    url(r'receipt/(?P<pk>[0-9]+)/delete/$',
+        ReceiptDelete.as_view(),
+        name='receipt_delete'),
 
-    url(r'password/(?P<pk>[0-9]+)/update/$',
-        PasswordUpdate.as_view(),
-        name='password_update'),
-
-    url(r'password/(?P<pk>[0-9]+)/delete/$',
-        PasswordDelete.as_view(),
-        name='password_delete'),
-
-    url(r'accesspoint/$',
-        AccessPointList.as_view(),
-        name='access_point_list'),
-
-    url(r'accesspoint/(?P<pk>[0-9]+)/$',
-        AccessPointDetail.as_view(),
-        name='access_point_detail'),
-
-    url(r'accesspoint/create/$',
-        AccessPointCreate.as_view(),
-        name='access_point_create'),
-
-    url(r'accesspoint/(?P<pk>[0-9]+)/update/$',
-        AccessPointUpdate.as_view(),
-        name='access_point_update'),
-
-    url(r'accesspoint/(?P<pk>[0-9]+)/delete/$',
-        AccessPointDelete.as_view(),
-        name='access_point_delete'),
-
-    url(r'showme/(?P<nameAP>[a-zA-Z][a-zA-Z0-9]*)/$',
-        ShowMeList.as_view(),
-        name='show_me_list'),
-
-    url(r'assign/(?P<pk>[0-9]+)$',
-        AssignList.as_view(),
-        name='assign_list'),
-
-    url(r'^assign/link_together$', link_together),
 ]

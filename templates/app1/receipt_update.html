@@ -26,10 +26,10 @@
     {% endif %}
 
     <p>
-        {{ form.errors.website }}
-        <label for="id_website">Website:</label>
-        <input id="id_website" maxlength="254"
-               name="website" type="text" value="{{ item.website }}" />
+        {{ form.errors.name }}
+        <label for="id_name">name:</label>
+        <input id="id_name" maxlength="254"
+               name="name" type="text" value="{{ item.name }}" />
         <span class="helptext">Website name or computer name</span>
     </p>
     <p>
@@ -101,7 +101,7 @@
     <input type="submit" value="Save" />
 </form>
 
-<a class="text-center btn btn-primary" href="{% url "password_list" %}">
+<a class="text-center btn btn-primary" href="{% url "receipts" %}">
     Back to the password list</a>
 
 {% endblock %}

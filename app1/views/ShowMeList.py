@@ -7,7 +7,7 @@ from app1.models import Password
 class ShowMeList(ListView):
     model = Password
     template_name = "app1/show_me_list.html"
-    fields = ['id', 'website', 'username', 'password', 'creationDT',
+    fields = ['id', 'name', 'username', 'password', 'creationDT',
               'modificationDT', 'comment']
 
     def get_queryset(self):

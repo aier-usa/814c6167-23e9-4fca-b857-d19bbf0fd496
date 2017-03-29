@@ -51,7 +51,7 @@
                    data-placement="auto"
                    title=
                    "Website, computer or organization name">
-                    Website
+                    name
                 </a>
             </th>
             <th class="text-center">
@@ -87,19 +87,19 @@
 {#                    {{ item.website | truncatechars:25 }}#}
 {#                    <div class="hide-some">{{ item.website }}</div>#}
 
-                    {% if item.website|length >= 25 %}
+                    {% if item.name|length >= 25 %}
                          <a data-toggle="tooltip"
                          data-placement="auto"
                          title=
-                         "{{ item.website }}">
-                         {{ item.website | truncatechars:25 }}
+                         "{{ item.name }}">
+                         {{ item.name | truncatechars:25 }}
                          </a>
                     {% else %}
-                        {{ item.website }}
+                        {{ item.name }}
                     {% endif %}
                     <button class="clipboardclass"
                             data-clipboard-text=
-                            "{{ item.website }}">
+                            "{{ item.name }}">
                         <img data-toggle="tooltip"
                                 data-placement="right"
                                 title="Click to copy to the clipboard"
@@ -202,8 +202,8 @@
                 <a data-toggle="tooltip"
                    data-placement="auto"
                    title=
-                   "Website, computer or organization name">
-                    Website
+                   "name, computer or organization name">
+                    name
                 </a>
             </th>
             <th class="text-center">
@@ -242,19 +242,19 @@
 
                 </td>
                 <td class="text-center">
-                    {% if item.website|length >= 25 %}
+                    {% if item.name|length >= 25 %}
                          <a data-toggle="tooltip"
                          data-placement="auto"
                          title=
-                         "{{ item.website }}">
-                         {{ item.website | truncatechars:25 }}
+                         "{{ item.name }}">
+                         {{ item.name | truncatechars:25 }}
                          </a>
                     {% else %}
-                        {{ item.website }}
+                        {{ item.name }}
                     {% endif %}
                     <button class="clipboardclass"
                             data-clipboard-text=
-                            "{{ item.website }}">
+                            "{{ item.name }}">
                         <img data-toggle="tooltip"
                                 data-placement="right"
                                 title="Click to copy to the clipboard"

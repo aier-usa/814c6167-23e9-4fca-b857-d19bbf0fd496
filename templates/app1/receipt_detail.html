@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="">
+        <h1 class="text-center">Receipt Details</h1>
+    </div>
+ID is: {{ receipt.id }} <br/>
+name is: {{ receipt.name }} <br/>
+Store Name is: {{ receipt.store_name }} <br/>
+Amount is: {{ receipt.amount }} <br/>
+photo is: {{ receipt.photo }} <br/>
+Created On: {{ v.creationDT }}<br/>
+Modified On: {{ receipt.modificationDT }} <br/>
+
+
+<a class="text-center btn btn-primary"
+    href="{% url "receipts" %}">
+    Back to the password list
+</a>
+{% endblock %}

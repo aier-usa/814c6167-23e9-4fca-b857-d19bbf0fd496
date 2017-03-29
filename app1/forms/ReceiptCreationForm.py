@@ -1,55 +1,54 @@
 from django import forms
 from django.utils.translation import ugettext as _
 from django.core.exceptions import ValidationError
-from app1.models import Password
+from app1.models import Receipt
 
 
-class PasswordCreationForm(forms.ModelForm):
+class ReceiptCreationForm(forms.ModelForm):
     class Meta:
-        model = Password
-        fields = ("website", "username", "password",
-                  "creationDT", "modificationDT",
-                  "email", "security_questions", "comment")
+        model = Receipt
+        fields = ("name", "store_name", "amount",
+                  "creation_DT", "modification_DT")
         labels = {
-            'creationDT': 'Created On',
-            'modificationDT': 'Modified On',
+            'creation_DT': 'Created On',
+            'modification_DT': 'Modified On',
         }
         help_texts = {
-            'website':
-                'Website name or computer name or organization name',
-            'username':
-                'Username or email or phone number',
-            'password':
-                'Password hint works perfect. Full honesty optional',
-            'creationDT':
+            'name':
+                'Name given to the receipt',
+            'store_name':
+                'Name of the eyecare store',
+            'amount':
+                'Dollar amount spent for the item',
+            'creation_DT':
                 'Creation Date/Time. Format: YYYY-MM-DD [HH:MM:SS]',
-            'modificationDT':
+            'modification_DT':
                 'Modification Date/Time. Format: YYYY-MM-DD [HH:MM:SS]',
-            'comment':
-                'Any comments are welcome',
+            'photo':
+                'Thumbnail Picture',
         }
         error_messages = {
-            'creationDT': {
+            'creation_DT': {
                 'wrong_format':
                     "Wrong format. Correct one: YYYY-MM-DD [HH:MM:SS]",
             },
-            'modificationDT': {
+            'modification_DT': {
                 'wrong_format':
                     "Wrong format. Correct one: YYYY-MM-DD [HH:MM:SS]",
             },
         }
 
-    def clean_website(self):
-        website = self.cleaned_data['website']
-        if "," in website:
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if "," in name:
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
-        return website
+        return name
 
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        if "," in username:
+    def clean_store_name(self):
+        store_name = self.cleaned_data['store_name']
+        if "," in store_name:
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
-        return username
+        return store_name
 
     def clean_password(self):
         password = self.cleaned_data['password']
@@ -65,10 +64,10 @@ class PasswordCreationForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = \
-            super(PasswordCreationForm, self).clean()
+            super(ReceiptCreationForm, self).clean()
 
-        temp_website = cleaned_data.get("website")
-        cleaned_website = "" if (temp_website is None) else temp_website
+        temp_name = cleaned_data.get("name")
+        cleaned_name = "" if (temp_name is None) else temp_name
 
         temp_username = cleaned_data.get("username")
         cleaned_username = "" if (temp_username is None) else temp_username
@@ -76,14 +75,14 @@ class PasswordCreationForm(forms.ModelForm):
         temp_password = cleaned_data.get("password")
         cleaned_password = "" if (temp_password is None) else temp_password
 
-        if len(cleaned_website) == 0 and \
+        if len(cleaned_name) == 0 and \
             len(cleaned_username) == 0 and \
             len(cleaned_password) == 0:
             raise ValidationError(
                 _('Invalid combo. ' +\
                 'One of them must have value:'+\
-                'website, username and password'),
+                'name, username and password'),
                 code='Invalid combo. ' + \
                 'One of them must have value:'+\
-                'website, username and password')
+                'name, username and password')
 

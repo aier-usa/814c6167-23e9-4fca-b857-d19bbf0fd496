@@ -257,7 +257,7 @@ def user_login(request):
                 # We'll send the user back to the homepage.
                 login(request, user)
                 # return HttpResponseRedirect('/')
-                return HttpResponseRedirect(reverse('password_list'))
+                return HttpResponseRedirect(reverse('receipts'))
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse(
