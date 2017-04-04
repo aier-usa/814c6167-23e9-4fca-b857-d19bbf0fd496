@@ -8,6 +8,8 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
+
+
     dependencies = [
         ('app1', '0019_auto_20170403_2149'),
     ]
