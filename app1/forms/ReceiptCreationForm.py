@@ -1,14 +1,30 @@
+from django.core.files.storage import FileSystemStorage
 from django import forms
 from django.utils.translation import ugettext as _
 from django.core.exceptions import ValidationError
 from app1.models import Receipt
+from django.db import models
+fs = FileSystemStorage(location='media/photos')
 
 
 class ReceiptCreationForm(forms.ModelForm):
+    #name = forms.CharField(max_length=255, blank=True)
+    #store_name = forms.CharField(max_length=255, blank=True)
+
+    #amount = forms.DecimalField(max_digits=10, decimal_places=2, blank=True)
+
+    #docfile = forms.FileField(
+    #    label='Select a file',
+    #    help_text='max. 42 megabytes'
+    #)
+    #comment = forms.CharField(max_length=200, blank=True)
+
+    #creation_DT = forms.DateTimeField(null=True, blank=True)
+
     class Meta:
         model = Receipt
-        fields = ("name", "store_name", "amount",
-                  "creation_DT", "modification_DT")
+        fields = ("name", "store_name", "amount", "docfile",
+                  "comment", "creation_DT", "modification_DT")
         labels = {
             'creation_DT': 'Created On',
             'modification_DT': 'Modified On',
@@ -50,11 +66,17 @@ class ReceiptCreationForm(forms.ModelForm):
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
         return store_name
 
-    def clean_password(self):
-        password = self.cleaned_data['password']
-        if "," in password:
-            raise ValidationError("Punctuation mark comma (,) is not allowed.")
-        return password
+    def clean_amount(self):
+        amount = self.cleaned_data['amount']
+        return amount
+
+    def clean_creation_DT(self):
+        creation_DT = self.cleaned_data['creation_DT']
+        return creation_DT
+
+    def clean_modification_DT(self):
+        modification_DT = self.cleaned_data['modification_DT']
+        return modification_DT
 
     def clean_comment(self):
         comment = self.cleaned_data['comment']

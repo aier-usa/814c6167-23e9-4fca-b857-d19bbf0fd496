@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 from app1.views.main import (
     testing,
@@ -136,4 +139,4 @@ urlpatterns = [
         ReceiptDelete.as_view(),
         name='receipt_delete'),
 
-]
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

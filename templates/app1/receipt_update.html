@@ -2,8 +2,8 @@
 
 {% block content %}
 <div>
-    <h3 class="text-center">Use this form to update an old password entry.
-    Clicking on "Back to the password list" does not update anything.</h3>
+    <h3 class="text-center">Use this form to update an old receipt entry.
+    Clicking on "Back to the receipt list" does not update anything.</h3>
 </div>
 <form action="" method="post">
     {% csrf_token %}
@@ -102,6 +102,6 @@
 </form>
 
 <a class="text-center btn btn-primary" href="{% url "receipts" %}">
-    Back to the password list</a>
+    Back to the receipt list</a>
 
 {% endblock %}

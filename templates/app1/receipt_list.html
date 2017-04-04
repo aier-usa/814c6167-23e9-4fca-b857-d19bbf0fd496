@@ -82,12 +82,12 @@
                     Dollar Amount
                 </a>
             </th>
-            <th class="text-center">
+              <th class="text-center">
                 <a data-toggle="tooltip"
                    data-placement="auto"
                    title=
-                   "Thumbnail Picture">
-                    Thumbnail Picture
+                   "Link to the picture (click to view)">
+                    Link to the picture (click to view)
                 </a>
             </th>
           </tr>
@@ -107,8 +107,10 @@
                 <td class="text-center">
                     {{ item.amount }}
                 </td>
-                 <td class="text-center">
-                     {{ item.photo }}
+                <td class="text-center">
+                     <a href="{{ item.docfile.url }}">
+                         {{ item.docfile.name }}
+                     </a>
                 </td>
                 </tr>
             {% endfor %}

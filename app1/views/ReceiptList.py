@@ -15,7 +15,7 @@ class ReceiptList(LoginRequiredMixin, ListView):
         uid = self.request.user.id
         temp_variable = Receipt.objects.filter(
             user_id=uid).order_by(
-            "-modification_DT", "name")
+            "-modification_DT", "-id")
 
         return temp_variable
 

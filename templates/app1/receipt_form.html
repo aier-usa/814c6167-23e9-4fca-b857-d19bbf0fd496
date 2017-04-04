@@ -3,9 +3,10 @@
 {% block content %}
     <div>
         <h3 class="text-center">Use this form to create a new receipt entry.
-            Clicking on "Back to the Main Page" does not create anything.</h3>
+            Clicking on "Back to the receipt list" does not create anything.
+        </h3>
     </div>
-    <form action="" method="post">
+    <form action="" method="post" enctype = "multipart/form-data" >
         {% csrf_token %}
 
         {% if form.errors %}
@@ -99,11 +100,11 @@
 
         <tr>
             <td>
-            <label for="id_photo">Photo:</label>
+            <label for="id_docfile">Document:</label>
                 </td>
             <td>
-            <input id="id_photo" maxlength="255"
-                   name="photo" type="text"/>
+            <input type = "file" id="id_docfile" name="docfile"
+                   placeholder ="Picture Here"/>
                 </td>
             <td>
             <span class="helptext">
@@ -117,6 +118,6 @@
     </form>
 
     <a class="text-center btn btn-primary" href="{% url "receipts" %}">
-        Back to the password list</a>
+        Back to the receipt list</a>
 
 {% endblock %}
