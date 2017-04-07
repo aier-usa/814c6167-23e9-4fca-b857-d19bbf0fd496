@@ -25,12 +25,15 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
 
+        # other choices for signature_version: s3v4, v4, etc.
         s3 = boto3.resource(
             's3',
             aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
             aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
-            config=Config(signature_version='v4')
+            config=Config(
+                signature_version='AWS4-HMAC-SHA256')
         )
+
         # Print out bucket names
         for bucket in s3.buckets.all():
             print(bucket.name)
