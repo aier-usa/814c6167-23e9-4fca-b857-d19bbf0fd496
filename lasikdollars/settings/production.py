@@ -147,7 +147,9 @@ DATABASES['default'] = dj_database_url.config()
 
 AWS_STORAGE_BUCKET_NAME = "aierusa"
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = "https://%s.s3.amazonaws.com/" % os.environ['AWS_STORAGE_BUCKET_NAME']
+#MEDIA_URL = "https://%s.s3.amazonaws.com/" % os.environ['AWS_STORAGE_BUCKET_NAME']
+MEDIA_URL = "https://aierusa.s3.amazonaws.com/"
+
 MEDIA_ROOT = ''
 AWS_ACCESS_KEY_ID = "AKIAJISDRHQNH3AWMANA"
 AWS_SECRET_ACCESS_KEY = "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"
