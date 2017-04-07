@@ -35,9 +35,6 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
         for bucket in s3.buckets.all():
             print(bucket.name)
 
-        # Upload a new file
-        data = open('test.jpg', 'rb')
-
         webf = urlopen(
             'http://stackoverflow.com/questions/32971752/python-read-file-from-web-site-url')
         txt = webf.read()
