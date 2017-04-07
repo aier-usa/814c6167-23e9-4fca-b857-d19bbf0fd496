@@ -36,10 +36,13 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
             print(bucket.name)
 
         webf = urlopen(
-            'https://upload.wikimedia.org/wikipedia/en/5/58/Penny_test.jpg')
+            'https://upload.wikimedia.org/wikipedia/en/0/07/ByzantinePurple_test.jpg')
         txt = webf.read()
 
-        s3.Bucket('aierusa').put_object(Key='Penny_test.jpg', Body=txt)
+        s3.Bucket('aierusa').put_object(
+            ACL='public-read',
+            Key='ByzantinePurple_test.jpg',
+            Body=txt)
 
         form_class = self.get_form_class()
         form = ReceiptCreationForm(request.POST, request.FILES)
