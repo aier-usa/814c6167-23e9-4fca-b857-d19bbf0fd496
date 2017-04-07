@@ -35,7 +35,7 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
 
         # Upload a new file
         data = open('test.jpg', 'rb')
-        s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
+        s3.Bucket('aierusa').put_object(Key='test.jpg', Body=data)
 
 
         form_class = self.get_form_class()
