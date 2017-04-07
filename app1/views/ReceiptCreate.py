@@ -29,7 +29,7 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
             's3',
             aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
             aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
-            config=Config(signature_version='s3v4')
+            config=Config(signature_version='v4')
         )
         # Print out bucket names
         for bucket in s3.buckets.all():
