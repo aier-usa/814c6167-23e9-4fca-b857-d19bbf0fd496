@@ -36,10 +36,10 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
             print(bucket.name)
 
         webf = urlopen(
-            'http://stackoverflow.com/questions/32971752/python-read-file-from-web-site-url')
+            'https://upload.wikimedia.org/wikipedia/en/5/58/Penny_test.jpg')
         txt = webf.read()
 
-        s3.Bucket('aierusa').put_object(Key='destination.txt', Body=txt)
+        s3.Bucket('aierusa').put_object(Key='Penny_test.jpg', Body=txt)
 
         form_class = self.get_form_class()
         form = ReceiptCreationForm(request.POST, request.FILES)
