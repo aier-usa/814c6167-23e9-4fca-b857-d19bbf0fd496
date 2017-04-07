@@ -3,24 +3,9 @@ from django import forms
 from django.utils.translation import ugettext as _
 from django.core.exceptions import ValidationError
 from app1.models import Receipt
-from django.db import models
-fs = FileSystemStorage(location='media/photos')
 
 
 class ReceiptCreationForm(forms.ModelForm):
-    #name = forms.CharField(max_length=255, blank=True)
-    #store_name = forms.CharField(max_length=255, blank=True)
-
-    #amount = forms.DecimalField(max_digits=10, decimal_places=2, blank=True)
-
-    #docfile = forms.FileField(
-    #    label='Select a file',
-    #    help_text='max. 42 megabytes'
-    #)
-    #comment = forms.CharField(max_length=200, blank=True)
-
-    #creation_DT = forms.DateTimeField(null=True, blank=True)
-
     class Meta:
         model = Receipt
         fields = ("name", "store_name", "amount", "docfile",

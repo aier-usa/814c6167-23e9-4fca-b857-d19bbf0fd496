@@ -14,7 +14,10 @@ class Receipt(models.Model):
 
     amount = models.DecimalField(max_digits=10, decimal_places=2, blank=False)
 
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=False)
+    docfile = models.FileField(
+        upload_to='uploads/%Y/%m/%d',
+        max_length=511,
+        blank=False)
 
     comment = models.CharField(max_length=200, blank=True)
 

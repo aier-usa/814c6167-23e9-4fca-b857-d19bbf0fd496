@@ -51,6 +51,6 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
 
             print("checkpoint 3")
 
-            return  HttpResponseRedirect(reverse('receipts'))
+            return HttpResponseRedirect(reverse('receipts'))
         else:
             return self.form_invalid(form)

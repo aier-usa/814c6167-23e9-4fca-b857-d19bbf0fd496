@@ -20,8 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = \
-    '8b*i*v9ty@%!=isjtw6fht#u%!9g9-z@9+h#bfqyvi4y!z51kw'
+#SECRET_KEY = \
+#    '8b*i*v9ty@%!=isjtw6fht#u%!9g9-z@9+h#bfqyvi4y!z51kw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -142,6 +142,12 @@ STATICFILES_STORAGE = \
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = '/media/'
 
+AWS_STORAGE_BUCKET_NAME = "aierusa"
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = "https://%s.s3.amazonaws.com/" % os.environ['AWS_STORAGE_BUCKET_NAME']
+MEDIA_ROOT = ''
+AWS_ACCESS_KEY_ID = "AKIAJISDRHQNH3AWMANA"
+AWS_SECRET_ACCESS_KEY = "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"
