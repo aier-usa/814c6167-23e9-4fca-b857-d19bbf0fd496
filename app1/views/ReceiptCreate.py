@@ -11,6 +11,8 @@ import os
 from botocore.client import Config
 import boto3
 
+from urllib.request import urlopen
+
 
 
 class ReceiptCreate(LoginRequiredMixin, CreateView):
@@ -35,8 +37,12 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
 
         # Upload a new file
         data = open('test.jpg', 'rb')
-        s3.Bucket('aierusa').put_object(Key='test.jpg', Body=data)
 
+        webf = urlopen(
+            'http://stackoverflow.com/questions/32971752/python-read-file-from-web-site-url')
+        txt = webf.read()
+
+        s3.Bucket('aierusa').put_object(Key='destination.txt', Body=txt)
 
         form_class = self.get_form_class()
         form = ReceiptCreationForm(request.POST, request.FILES)
