@@ -6,6 +6,12 @@ from app1.forms.ReceiptCreationForm \
 
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+import os
+
+from botocore.client import Config
+import boto3
+
+
 
 class ReceiptCreate(LoginRequiredMixin, CreateView):
     model = Receipt
@@ -16,6 +22,22 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
         return super(ReceiptCreate, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
+
+        s3 = boto3.resource(
+            's3',
+            aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+            aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
+            config=Config(signature_version='s3v4')
+        )
+        # Print out bucket names
+        for bucket in s3.buckets.all():
+            print(bucket.name)
+
+        # Upload a new file
+        data = open('test.jpg', 'rb')
+        s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
+
+
         form_class = self.get_form_class()
         form = ReceiptCreationForm(request.POST, request.FILES)
         if form.is_valid():
