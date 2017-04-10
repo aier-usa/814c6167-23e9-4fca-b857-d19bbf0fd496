@@ -76,20 +76,8 @@ class ReceiptCreationForm(forms.ModelForm):
         temp_name = cleaned_data.get("name")
         cleaned_name = "" if (temp_name is None) else temp_name
 
-        temp_username = cleaned_data.get("username")
-        cleaned_username = "" if (temp_username is None) else temp_username
-
-        temp_password = cleaned_data.get("password")
-        cleaned_password = "" if (temp_password is None) else temp_password
-
-        if len(cleaned_name) == 0 and \
-            len(cleaned_username) == 0 and \
-            len(cleaned_password) == 0:
+        if len(cleaned_name) == 0:
             raise ValidationError(
-                _('Invalid combo. ' +\
-                'One of them must have value:'+\
-                'name, username and password'),
-                code='Invalid combo. ' + \
-                'One of them must have value:'+\
-                'name, username and password')
+                _('Name cannot be empty'),
+                code='Name cannot be empty')
 
