@@ -9,6 +9,9 @@
     <form action = "http://aierusa.s3.amazonaws.com/"
           method = "post"
           enctype = "multipart/form-data" >
+
+        <input type="hidden"  name="key" value="user/user1/${filename}" /><br />
+
         {% csrf_token %}
 
         {% if form.errors %}
@@ -116,7 +119,6 @@
 
 </table>
 
-        <input type="input"  name="key" value="user/user1/${filename}" /><br />
         <input type="hidden" name="acl" value="public-read" />
         <input type="hidden"
                name="success_action_redirect"
