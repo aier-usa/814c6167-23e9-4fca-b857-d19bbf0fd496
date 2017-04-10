@@ -11,6 +11,7 @@
           enctype = "multipart/form-data" >
 
         <input type="hidden"  name="key" value="user/user1/${filename}" /><br />
+        <input type="hidden"  name="bucket" value="aierusa" /><br />
 
         {% csrf_token %}
 
@@ -125,7 +126,6 @@
                value="{% url "receipts" %}" />
 
 
-        <input type="input"  name="Content-Type" value="image/jpeg" /><br />
         <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" />
         <input type="hidden" name="x-amz-server-side-encryption" value="AES256" />
         <input type="text"
