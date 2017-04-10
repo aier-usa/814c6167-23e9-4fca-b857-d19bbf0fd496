@@ -8,18 +8,18 @@ class Receipt(models.Model):
     id = models.BigAutoField(primary_key=True, auto_created=True, unique=True)
     user = models.ForeignKey(User, default=4, related_name="ownership")
 
-    name = models.CharField(max_length=255, blank=False)
+    name = models.CharField(max_length=254, blank=False)
 
     store_name = models.CharField(max_length=255, blank=False)
 
     amount = models.DecimalField(max_digits=10, decimal_places=2, blank=False)
 
-    docfile = models.FileField(
+    file = models.FileField(
         upload_to='uploads/%Y/%m/%d',
         max_length=511,
         blank=False)
 
-    comment = models.CharField(max_length=200, blank=True)
+    comment = models.CharField(max_length=254, blank=True)
 
     creation_DT = models.DateTimeField(null=False, blank=False)
     modification_DT = models.DateTimeField(null=False, blank=False)

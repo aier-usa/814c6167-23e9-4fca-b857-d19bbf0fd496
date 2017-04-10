@@ -76,7 +76,7 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
                 creation_DT=acreation_DT,
                 modification_DT=amodification_DT,
                 user_id=id,
-                docfile=request.FILES['docfile'])
+                file=request.FILES['file'])
             print("checkpoint 2")
             file_instance.save()
 

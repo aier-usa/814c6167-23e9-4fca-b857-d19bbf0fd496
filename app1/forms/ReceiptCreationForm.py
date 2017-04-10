@@ -8,7 +8,7 @@ from app1.models import Receipt
 class ReceiptCreationForm(forms.ModelForm):
     class Meta:
         model = Receipt
-        fields = ("name", "store_name", "amount", "docfile",
+        fields = ("name", "store_name", "amount", "file",
                   "comment", "creation_DT", "modification_DT")
         labels = {
             'creation_DT': 'Created On',
