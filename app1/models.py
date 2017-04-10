@@ -16,7 +16,7 @@ class Receipt(models.Model):
 
     file = models.FileField(
         upload_to='uploads/%Y/%m/%d',
-        max_length=511,
+        max_length=510,
         blank=False)
 
     comment = models.CharField(max_length=254, blank=True)
