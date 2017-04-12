@@ -82,11 +82,11 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
             return self.form_invalid(form)
 
     def s3_put_object(self, name, content):
-
-        print("Filename inside s2_put_object is: ")
+        print("Filename inside s3_put_object is: ")
         print(name)
         # other choices for signature_version: s3v4, v4, AWS4-HMAC-SHA256,
-        s3_signature_version = os.environ['S3_SIGNATURE_VERSION']
+        # inside environment variable now
+        s3_signature_version = os.environ['AWS_S3_SIGNATURE_VERSION']
         s3 = boto3.resource(
             's3',
             aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
@@ -94,7 +94,7 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
             config=Config(
                 signature_version=s3_signature_version)
         )
-        bucket_name = os.environ['S3_BUCKET_NAME']
+        bucket_name = os.environ['AWS_S3_BUCKET_NAME']
         s3.Bucket(bucket_name).put_object(
             ACL='public-read',
             Key=name,
