@@ -6,7 +6,6 @@ from app1.models import Receipt
 
 
 class ReceiptCreationForm(forms.ModelForm):
-    file = forms.FileField()
 
     class Meta:
         model = Receipt

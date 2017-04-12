@@ -14,9 +14,9 @@ class Receipt(models.Model):
 
     amount = models.DecimalField(max_digits=10, decimal_places=2, blank=False)
 
-    filename = models.CharField(max_length=999, blank=False)
+    filename = models.CharField(max_length=999, blank=True)
 
-    file_url = models.CharField(max_length=999, blank=False)
+    file_url = models.CharField(max_length=999, blank=True)
 
     comment = models.CharField(max_length=254, blank=True)
 

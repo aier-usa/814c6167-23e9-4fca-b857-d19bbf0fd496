@@ -86,8 +86,8 @@
                 <a data-toggle="tooltip"
                    data-placement="auto"
                    title=
-                   "Link to the picture (click below to view)">
-                    Link to the picture (click below to view)
+                   "Link to the uploaded document (click below to download/view)">
+                    Click below to download/view
                 </a>
             </th>
           </tr>
@@ -108,8 +108,8 @@
                     {{ item.amount }}
                 </td>
                 <td class="text-center">
-                     <a href="{{ item.filename }}"> <!-- item dot file dot url   -->
-                         {{ item.fileurl}}       <!-- item dot file dot name -->
+                     <a href="{{ item.file_url }}"> <!-- item dot file dot url   -->
+                         {{ item.filename}}       <!-- item dot file dot name -->
                      </a>
                 </td>
                 </tr>
@@ -118,7 +118,7 @@
       </table>
 
     <p class="text-center">
-        <strong>Total Amount is:</strong> <span>99999.99</span>
+        <strong>Total Amount is:</strong> <span>{{ total_amount }}</span>
     </p>
 
     <p class="text-center">

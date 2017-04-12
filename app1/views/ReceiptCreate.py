@@ -7,12 +7,10 @@ from app1.forms.ReceiptCreationForm \
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 import os
+import uuid
 
 from botocore.client import Config
 import boto3
-
-from urllib.request import urlopen
-
 
 
 class ReceiptCreate(LoginRequiredMixin, CreateView):
@@ -25,12 +23,7 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
 
-        form_class = self.get_form_class()
         form = ReceiptCreationForm(request.POST, request.FILES)
-        print('form is: ')
-        print(form)
-        print('value of form.is_valid() is: ')
-        print(form.is_valid())
         if form.is_valid():
             a_name = form.cleaned_data['name']
             print(a_name)
@@ -49,54 +42,60 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
 
             id = request.user.id
 
-            #print(aname)
-            print("checkpoint 1")
+            files = request.FILES['file']
+            two_parts = os.path.splitext(files.name)
+            base_file_name = two_parts[0]
+            file_extension = two_parts[1]
+
+            print(base_file_name)
+            print(file_extension)
+
+            uuid4 = str(uuid.uuid4())
+            content = files.read()
+
+
+            long_name = base_file_name + \
+                '-' + uuid4 + file_extension
+
+            print("generated long file name is: "
+                  + long_name)
+
+            self.s3_put_object(long_name, content)
+
+            print("checkpoint 3")
+
+            prefix = "https://s3.us-east-2.amazonaws.com/aierusa/"
+
             file_instance = Receipt(
                 name=a_name,
                 amount=an_amount,
                 store_name=astore_name,
                 creation_DT=acreation_DT,
                 modification_DT=amodification_DT,
+                filename=long_name,
+                file_url=prefix + long_name,
                 user_id=id)
-
-            files = request.FILES['file']
-            for f in files:
-                print(f)
-
-            print("checkpoint 2")
             file_instance.save()
-
-            print("File name is: ")
-            #print(request.FILES['files'][0])
-            self.s3_put_object('filename1.jpg')
-
-            print("checkpoint 3")
 
             return HttpResponseRedirect(reverse('receipts'))
         else:
             return self.form_invalid(form)
 
-    def s3_put_object(self, name):
+    def s3_put_object(self, name, content):
 
         print("Filename inside s2_put_object is: ")
         print(name)
         # other choices for signature_version: s3v4, v4, AWS4-HMAC-SHA256,
+        s3_signature_version = os.environ['S3_SIGNATURE_VERSION']
         s3 = boto3.resource(
             's3',
-            #aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-            aws_access_key_id="AKIAJISDRHQNH3AWMANA",
-            #aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
-            aws_secret_access_key="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",
+            aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+            aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
             config=Config(
-                signature_version='s3v4')
+                signature_version=s3_signature_version)
         )
-        # Print out bucket names
-        for bucket in s3.buckets.all():
-            print(bucket.name)
-        webf = urlopen(
-            'https://upload.wikimedia.org/wikipedia/en/0/07/ByzantinePurple_test.jpg')
-        txt = webf.read()
-        s3.Bucket('aierusa').put_object(
+        bucket_name = os.environ['S3_BUCKET_NAME']
+        s3.Bucket(bucket_name).put_object(
             ACL='public-read',
-            Key='ByzantinePurple_test.jpg',
-            Body=txt)
+            Key=name,
+            Body=content)

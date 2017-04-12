@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Sum
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from app1.models import (
@@ -37,5 +37,8 @@ class ReceiptList(LoginRequiredMixin, ListView):
         temp_variable = Receipt.objects.filter(
             user_id=uid)
         context['your_own_num_receipt'] = temp_variable.count()
+
+        total_amount = temp_variable.aggregate(sum=Sum('amount'))['sum']
+        context['total_amount'] = total_amount
 
         return context
