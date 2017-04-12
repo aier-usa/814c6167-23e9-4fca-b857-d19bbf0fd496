@@ -6,9 +6,11 @@ from app1.models import Receipt
 
 
 class ReceiptCreationForm(forms.ModelForm):
+    file = forms.FileField()
+
     class Meta:
         model = Receipt
-        fields = ("name", "store_name", "amount", "file",
+        fields = ("name", "store_name", "amount", "filename",
                   "comment", "creation_DT", "modification_DT")
         labels = {
             'creation_DT': 'Created On',

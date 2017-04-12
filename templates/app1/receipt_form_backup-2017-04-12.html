@@ -6,9 +6,13 @@
             Clicking on "Back to the receipt list" does not create anything.
         </h3>
     </div>
-    <form action = ""
+    <form action = "http://aierusa.s3.amazonaws.com/"
           method = "post"
-          enctype='multipart/form-data'>
+          enctype = "multipart/form-data" >
+
+        <input type="hidden"  name="key" value="user/user1/${filename}" /><br />
+        <input type="hidden"  name="bucket" value="aierusa" /><br />
+
         {% csrf_token %}
 
         {% if form.errors %}
@@ -102,41 +106,11 @@
 
         <tr>
             <td>
-            <label for="id_filename">FileName:</label>
+            <label for="id_file">Document:</label>
                 </td>
             <td>
-            <input id="id_filename" name="filename"
-                   type="text"/>
-                </td>
-            <td>
-            <span
-                class="helptext">
-                &nbsp;Enter the file name: Future: auto fill
-            </span></td>
-        </tr>
-
-        <tr>
-            <td>
-            <label for="id_file_url">File URL:</label>
-                </td>
-            <td>
-            <input id="id_file_url" name="file_url"
-                   type="text"/>
-                </td>
-            <td>
-            <span
-                class="helptext">
-                &nbsp;Enter file URL: Future: auto fill
-            </span></td>
-        </tr>
-
-        <tr>
-            <td>
-            <label for="id_file">File to be uploaded: </label>
-                </td>
-            <td>
-            <input type = "file" id="id_file" name="file"
-                   placeholder ="Picture/scanned image here"/>
+            <input type = "file" id="file" name="file"
+                   placeholder ="Picture Here"/>
                 </td>
             <td>
             <span class="helptext">
@@ -145,6 +119,24 @@
         </tr>
 
 </table>
+
+        <input type="hidden" name="acl" value="public-read" />
+        <input type="hidden"
+               name="success_action_redirect"
+               value="{% url "receipts" %}" />
+
+
+        <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" />
+        <input type="hidden" name="x-amz-server-side-encryption" value="AES256" />
+        <input type="hidden"
+               name="X-Amz-Credential"
+               value="AKIAIOSFODNN7EXAMPLE/20991229/us-east-2/s3/aws4_request" />
+        <input type="hidden"   name="X-Amz-Algorithm" value="AWS4-HMAC-SHA256" />
+        <input type="hidden"   name="X-Amz-Date" value="20991229T000000Z" />
+
+        <input type="hidden"  name="x-amz-meta-tag" value="not important????" /><br />
+        <input type="hidden" name="Policy" value='<Base64-encoded policy string>' />
+        <input type="hidden" name="X-Amz-Signature" value="<signature-value>" />
 
 
 

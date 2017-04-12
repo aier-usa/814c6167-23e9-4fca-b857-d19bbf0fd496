@@ -9,7 +9,7 @@ from app1.models import (
 class ReceiptList(LoginRequiredMixin, ListView):
     model = Receipt
     fields = ['id', 'name', 'store_name', 'creation_DT',
-              'modification_DT', 'photo']
+              'modification_DT', 'filename']
 
     def get_queryset(self):
         uid = self.request.user.id
