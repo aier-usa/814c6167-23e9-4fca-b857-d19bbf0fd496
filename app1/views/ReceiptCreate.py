@@ -60,7 +60,18 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
             print("generated long file name is: "
                   + long_name)
 
-            self.s3_put_object(long_name, content)
+            if file_extension == "pdf":
+                content_type = "application/pdf"
+            elif file_extension == "jpeg":
+                content_type = "image/jpeg"
+            elif file_extension == "jpg":
+                content_type = "image/jpg"
+            elif file_extension == "png":
+                content_type = "image/png"
+            else:
+                content_type = ""
+
+            self.s3_put_object(long_name, content, content_type)
 
             print("checkpoint 3")
 
@@ -81,7 +92,7 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
         else:
             return self.form_invalid(form)
 
-    def s3_put_object(self, name, content):
+    def s3_put_object(self, name, content, content_type):
         print("Filename inside s3_put_object is: ")
         print(name)
         # other choices for signature_version: s3v4, v4, AWS4-HMAC-SHA256,
@@ -96,6 +107,7 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
         )
         bucket_name = os.environ['AWS_S3_BUCKET_NAME']
         s3.Bucket(bucket_name).put_object(
+            ContentType=content_type,
             ACL='public-read',
             Key=name,
             Body=content)
