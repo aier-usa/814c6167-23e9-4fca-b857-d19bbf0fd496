@@ -36,7 +36,7 @@
                 </td>
             <td>
             <input id="id_name" maxlength="254"
-                   name="name" type="text"/>
+                   name="name" type="text" required />
                 </td>
             <td>
             <span class="helptext text-right">
@@ -50,7 +50,7 @@
             </td>
             <td>
             <input id="id_store_name" maxlength="255"
-                   name="store_name" type="text"/>
+                   name="store_name" type="text" required />
             </td>
             <td>
             <span class="helptext">
@@ -68,7 +68,7 @@
                    name="amount"
                    type="number"
                    pattern="[1-9][0-9]+(\.[0-9]+)"
-                   step="0.01"/>
+                   step="0.01" required />
                 </td>
             <td>
             <span class="helptext">
@@ -81,12 +81,15 @@
             <label for="id_creation_DT">Created On:</label>
     </td>
         <td>
-            <input id="id_creation_DT" name="creation_DT"
-                   type="text" value="{% now 'Y-m-d H:i:s'%}"/>
+            <input id="id_creation_DT"
+                   name="creation_DT"
+                   type="text"
+                   value="{% now 'Y-m-d H:i:s'%}"
+                   required />
             </td>
         <td>
             <span class="helptext">
-                &nbsp;Creation Date/Time. Format: YYYY-MM-DD HH:MM:SS
+                Creation Date/Time. Format: YYYY-MM-DD HH:MM:SS
             </span></td>
         </tr>
         <tr>
@@ -98,9 +101,8 @@
                    type="text" value="{% now 'Y-m-d H:i:s'%}"/>
                 </td>
             <td>
-            <span
-                class="helptext">
-                &nbsp;Date/Time. Format: YYYY-MM-DD HH:MM:SS
+            <span class="helptext">
+                Date/Time. Format: YYYY-MM-DD HH:MM:SS
             </span></td>
         </tr>
 
