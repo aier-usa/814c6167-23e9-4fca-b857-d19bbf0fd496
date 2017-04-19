@@ -3,7 +3,7 @@ from django import forms
 from django.utils.translation import ugettext as _
 from django.core.exceptions import ValidationError
 from app1.models import Receipt
-
+from decimal import Decimal
 
 class ReceiptCreationForm(forms.ModelForm):
 
@@ -52,10 +52,6 @@ class ReceiptCreationForm(forms.ModelForm):
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
         return store_name
 
-    def clean_amount(self):
-        amount = self.cleaned_data['amount']
-        return amount
-
     def clean_creation_DT(self):
         creation_DT = self.cleaned_data['creation_DT']
         return creation_DT
@@ -69,6 +65,14 @@ class ReceiptCreationForm(forms.ModelForm):
         if "," in comment:
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
         return comment
+
+    def clean_amount(self):
+        amount = self.cleaned_data['amount']
+        try:
+            x = Decimal(amount)
+        except ValueError:
+                raise ValidationError("Amount field is not valid. Try again.")
+        return x
 
     def clean(self):
         cleaned_data = \

@@ -63,12 +63,16 @@
             <label for="id_amount">Amount:</label>
                 </td>
             <td>
-            <input id="id_amount" maxlength="255"
-                   name="amount" type="text"/>
+            <input id="id_amount"
+                   maxlength="255"
+                   name="amount"
+                   type="number"
+                   pattern="[1-9][0-9]+(\.[0-9]+)"
+                   step="0.01"/>
                 </td>
             <td>
             <span class="helptext">
-                Dollar amount spent for the item. Dollars and Cents
+                Dollars and Cents. Format: 12345.67
             </span>
             </td>
         </tr>
@@ -106,11 +110,11 @@
                 </td>
             <td>
             <input type = "file" id="id_file" name="file"
-                   placeholder ="Picture/scanned image here"/>
+                   placeholder ="Picture/scanned image here" required/>
                 </td>
             <td>
             <span class="helptext">
-                Picture
+                File Name. Required.
             </span></td>
         </tr>
 
