@@ -10,6 +10,7 @@ import os
 import uuid
 from django.shortcuts import render
 from app1.utils.general import s3_put_object
+from datetime import datetime
 
 
 class ReceiptCreate(LoginRequiredMixin, CreateView):
@@ -39,8 +40,13 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
         uuid4 = str(uuid.uuid4())
         content = files.read()
 
-        long_name = base_file_name + \
-                    '-' + uuid4 + file_extension
+        # date directory information such as 2099/08/08/
+        today = datetime.now()
+
+        today_path = today.strftime("%Y/%m/%d/")
+
+        long_name = today_path + base_file_name + \
+                    '--' + uuid4 + file_extension
 
         print("generated long file name is: "
               + long_name)

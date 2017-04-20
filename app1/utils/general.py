@@ -23,6 +23,11 @@ def s3_put_object(name, content, content_type):
         Key=name,
         Body=content)
 
+    # s3.Bucket(bucket_name).put_object(
+    #     ContentType=content_type,
+    #     ACL='public-read',
+    #     Key="2017/04/20/" + name,
+    #     Body=content)
 
 def s3_delete_object(name):
     print("Filename inside s3_delete_object is: ")
@@ -45,7 +50,7 @@ def s3_delete_object(name):
                 [
                     {
                         'Key': name
-                    },
+                    }
                 ],
             'Quiet': True
         }
