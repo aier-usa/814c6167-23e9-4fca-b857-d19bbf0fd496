@@ -9,9 +9,7 @@ from django.core.urlresolvers import reverse
 import os
 import uuid
 from django.shortcuts import render
-
-from botocore.client import Config
-import boto3
+from app1.utils.general import s3_put_object
 
 
 class ReceiptCreate(LoginRequiredMixin, CreateView):
@@ -103,7 +101,7 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
 
             id = request.user.id
 
-            self.s3_put_object(long_name, content, content_type)
+            s3_put_object(long_name, content, content_type)
 
             print("checkpoint 3")
 
@@ -123,23 +121,3 @@ class ReceiptCreate(LoginRequiredMixin, CreateView):
             return HttpResponseRedirect(reverse('receipts'))
         else:
             return self.form_invalid(form)
-
-    def s3_put_object(self, name, content, content_type):
-        print("Filename inside s3_put_object is: ")
-        print(name)
-        # other choices for signature_version: s3v4, v4, AWS4-HMAC-SHA256,
-        # inside environment variable now
-        s3_signature_version = os.environ['AWS_S3_SIGNATURE_VERSION']
-        s3 = boto3.resource(
-            's3',
-            aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-            aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
-            config=Config(
-                signature_version=s3_signature_version)
-        )
-        bucket_name = os.environ['AWS_S3_BUCKET_NAME']
-        s3.Bucket(bucket_name).put_object(
-            ContentType=content_type,
-            ACL='public-read',
-            Key=name,
-            Body=content)

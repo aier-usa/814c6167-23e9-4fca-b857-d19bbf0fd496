@@ -24,10 +24,9 @@ class Receipt(models.Model):
     modification_DT = models.DateTimeField(null=False, blank=False)
 
     def __str__(self):
-        return 'Receipt: [' + self.name + '] ' + \
-               '[' + 'at store ' + self.store_name + ']' + \
-               '[' + 'Created on ' + str(self.creation_DT) + ']'
-
+        return 'Receipt: [receipt_name:' + self.name + '] ' + \
+               '[bought at store: ' + self.store_name + '] ' + \
+               '[created on: ' + str(self.creation_DT) + ']'
 
     def get_absolute_url(self):
         # return reverse('password', kwargs={'pk': self.pk})

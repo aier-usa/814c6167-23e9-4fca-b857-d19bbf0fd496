@@ -90,28 +90,56 @@
                     Click below to download/view
                 </a>
             </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Choices: More, Edit, Delete">
+                    Actions
+                </a>
+            </th>
           </tr>
         </thead>
         <tbody>
             {% for item in object_list %}
                 <tr>
-                <td class="text-center">
-                    {{ item.id }}
-                </td>
-                <td class="text-center">
-                    {{ item.name }}
-                </td>
-                <td class="text-center">
-                    {{ item.store_name }}
-                </td>
-                <td class="text-center">
-                    {{ item.amount }}
-                </td>
-                <td class="text-center">
-                     <a href="{{ item.file_url }}"> <!-- item dot file dot url   -->
-                         {{ item.filename}}       <!-- item dot file dot name -->
-                     </a>
-                </td>
+                    <td class="text-center">
+                        {{ item.id }}
+                    </td>
+                    <td class="text-center">
+                        {{ item.name }}
+                    </td>
+                    <td class="text-center">
+                        {{ item.store_name }}
+                    </td>
+                    <td class="text-center">
+                        {{ item.amount }}
+                    </td>
+                    <td class="text-center">
+                         <a href="{{ item.file_url }}"> <!-- item dot file dot url   -->
+                             {{ item.filename}}       <!-- item dot file dot name -->
+                         </a>
+                    </td>
+
+                    <td class="text-center">
+                        <a class ="btn btn-primary"
+                           href="{% url "receipt_detail" pk=item.id %}">
+                            <i class="icon-lg ion-more"
+                               title="More...">
+                            </i></a>
+                        <a class ="btn btn-warning"
+                           href="{% url "receipt_update" pk=item.id %}">
+                           <i class="icon-lg ion-edit"
+                              title="Edit">
+                           </i>
+                        </a>
+                        <a class ="btn btn-danger"
+                           href="{% url "receipt_delete" pk=item.id %}">
+                           <i class="icon-lg ion-close-round"
+                              title="Delete">
+                           </i>
+                        </a>
+                     </td>
                 </tr>
             {% endfor %}
         </tbody>
