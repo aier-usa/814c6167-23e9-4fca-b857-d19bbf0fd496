@@ -5,5 +5,5 @@ from app1.models import Receipt
 
 class ReceiptDetail(LoginRequiredMixin, DetailView):
     model = Receipt
-    fields = ['name', 'store_name', 'creation_DT',
+    fields = ['name', 'store_name', 'amount', 'comment', 'creation_DT',
               'modification_DT']

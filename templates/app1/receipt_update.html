@@ -27,47 +27,64 @@
 
     <p>
         {{ form.errors.name }}
-        <label for="id_name">name:</label>
-        <input id="id_name" maxlength="254"
-               name="name" type="text" value="{{ item.name }}" />
-        <span class="helptext">Website name or computer name</span>
+        <label for="id_name">Receipt Name:</label>
+        <input
+                id="id_name"
+                maxlength="254"
+                name="name"
+                type="text"
+                value="{{ item.name }}" required/>
+        <span class="helptext">Receipt Name</span>
     </p>
     <p>
-        {{ form.errors.username }}
-        <label for="id_username">Username:</label>
-        <input id="id_username" maxlength="255"
-               name="username" type="text" value="{{ item.username }}" />
-        <span class="helptext">Username or email address or phone number
-        </span>
+        {{ form.errors.store_name }}
+        <label for="id_store_name">Store Name:</label>
+        <input
+                id="id_store_name"
+                maxlength="255"
+                name="store_name"
+                type="text"
+                value="{{ item.store_name }}" required/>
+        <span class="helptext">Store Name</span>
     </p>
     <p>
-        {{ form.errors.password }}
-        <label for="id_password">Password:</label>
-        <input id="id_password" maxlength="255"
-               name="password" type="text" value="{{ item.password }}" />
+        {{ form.errors.amount }}
+        <label for="id_amount">Dollar Amount:</label>
+        <input
+                id="id_amount"
+                maxlength="255"
+                name="amount"
+                value="{{ item.amount }}"
+                type="number"
+                pattern="[1-9][0-9]+(\.[0-9]+)"
+                step="0.01" required />
         <span class="helptext">
-            Password hint works perfect. Full honesty optional
+            Dollar Amount. Format: 1234567.89
         </span>
     </p>
     <p>
-        {{ form.errors.creationDT }}
-        <label for="id_creationDT">Created On:
+        {{ form.errors.creation_DT }}
+        <label for="id_creation_DT">Created On:
         </label>
-        <input id="id_creationDT" name="creationDT"
+        <input id="id_creation_DT"
+               name="creation_DT"
                type="text"
                value=
-               "{{ item.creationDT|date:'Y-m-d' }} {{ item.creationDT|time:'H:i:s' }}" />
+               "{{ item.creation_DT|date:'Y-m-d' }} {{ item.creation_DT|time:'H:i:s' }}" />
         <span class="helptext">
             Creation Date/Time. Format: YYYY-MM-DD HH:MM:SS
         </span>
     </p>
     <p>
-        {{ form.errors.modificationDT }}
-        <label for="id_modificationDT">
+        {{ form.errors.modification_DT }}
+        <label for="id_modification_DT">
             Modified On:
         </label>
-        <input id="id_modificationDT" name="modificationDT"
-               type="text" value="{% now 'Y-m-d H:i:s'%}" />
+        <input id="id_modification_DT"
+               name="modification_DT"
+               type="text"
+               value=
+               "{{ item.modification_DT|date:'Y-m-d' }} {{ item.modification_DT|time:'H:i:s' }}" />
         <span class="helptext">
             Modification Date/Time. Format: YYYY-MM-DD HH:MM:SS
         </span>
@@ -81,21 +98,9 @@
         </span>
     </p>
     <p>
-        {{ form.errors.security_questions }}
-        <label for="id_security_questions">Security Questions:</label>
-        <input id="id_security_questions" maxlength="255"
-               name="security_questions" type="text" value=
-                       "{{ item.security_questions }}" />
-        <span class="helptext">Security Questions
-        </span>
-    </p>
-    <p>
-        {{ form.errors.email }}
-        <label for="id_email">Email:</label>
-        <input id="id_email" maxlength="255"
-               name="email" type="text" value="{{ item.email }}" />
-        <span class="helptext">Email address used for this account
-        </span>
+        <strong>You are NOT allowed to change the receipt file.</strong>
+        If you have uploaded the wrong file, please delete the old entry and create a
+        new entry with the correct file.
     </p>
 
     <input type="submit" value="Save" />

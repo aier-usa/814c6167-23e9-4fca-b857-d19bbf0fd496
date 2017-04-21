@@ -8,15 +8,19 @@ from app1.models import (
 
 class ReceiptList(LoginRequiredMixin, ListView):
     model = Receipt
-    fields = ['id', 'name', 'store_name', 'creation_DT',
-              'modification_DT', 'filename']
+    fields = ['id', 'name', 'store_name', 'amount', 'creation_DT',
+              'modification_DT', 'filename', 'file_url']
 
     def get_queryset(self):
         uid = self.request.user.id
         temp_variable = Receipt.objects.filter(
             user_id=uid).order_by(
             "-modification_DT", "-id")
-
+        for t in temp_variable:
+            double_dash = t.filename.rfind('--')
+            starting_pos = 11
+            t.short_filename = \
+                t.filename[starting_pos:double_dash]
         return temp_variable
 
     def get_context_data(self, **kwargs):

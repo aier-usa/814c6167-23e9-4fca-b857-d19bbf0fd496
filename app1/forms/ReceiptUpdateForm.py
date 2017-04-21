@@ -8,8 +8,9 @@ class ReceiptUpdateForm(forms.ModelForm):
     class Meta:
         model = Receipt
         fields = (
-            "name", "store_name",
+            "name", "store_name", "amount",
             "creation_DT", "modification_DT",
+            "comment"
         )
         labels = {
             'creation_DT': 'Created On',
@@ -42,17 +43,11 @@ class ReceiptUpdateForm(forms.ModelForm):
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
         return name
 
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        if "," in username:
+    def clean_store_name(self):
+        store_name = self.cleaned_data['store_name']
+        if "," in store_name:
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
-        return username
-
-    def clean_password(self):
-        password = self.cleaned_data['password']
-        if "," in password:
-            raise ValidationError("Punctuation mark comma (,) is not allowed.")
-        return password
+        return store_name
 
     def clean_comment(self):
         comment = self.cleaned_data['comment']
@@ -60,38 +55,6 @@ class ReceiptUpdateForm(forms.ModelForm):
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
         return comment
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if "," in email:
-            raise ValidationError("Punctuation mark comma (,) is not allowed.")
-        return email
-
-    def clean_security_questions(self):
-        security_questions = self.cleaned_data['security_questions']
-        if "," in security_questions:
-            raise ValidationError("Punctuation mark comma (,) is not allowed.")
-        return security_questions
-
     def clean(self):
         cleaned_data = \
             super(ReceiptUpdateForm, self).clean()
-
-        temp_name = cleaned_data.get("name")
-        cleaned_name = "" if (temp_name is None) else temp_name
-
-        temp_username = cleaned_data.get("username")
-        cleaned_username = "" if (temp_username is None) else temp_username
-
-        temp_password = cleaned_data.get("password")
-        cleaned_password = "" if (temp_password is None) else temp_password
-
-        if len(cleaned_name) == 0 and \
-            len(cleaned_username) == 0 and \
-            len(cleaned_password) == 0:
-            raise ValidationError(
-                _('Invalid combo. ' +\
-                'One of them must have value: '+\
-                'name, username and password'),
-                code='Invalid combo. ' + \
-                'One of them must have value: '+\
-                'name, username and password')

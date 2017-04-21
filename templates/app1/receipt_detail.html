@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="">
         <h1 class="text-center">Receipt Details</h1>
-    </div>
 ID is: {{ receipt.id }} <br/>
-name is: {{ receipt.name }} <br/>
+Receipt Name is: {{ receipt.name }} <br/>
 Store Name is: {{ receipt.store_name }} <br/>
 Amount is: {{ receipt.amount }} <br/>
-photo is: {{ receipt.file }} <br/>
-Created On: {{ v.creationDT }}<br/>
-Modified On: {{ receipt.modificationDT }} <br/>
+Receipt file URL is: {{ receipt.file_url }} <br/>
+Created On: {{ receipt.creation_DT }}<br/>
+Modified On: {{ receipt.modification_DT }} <br/>
 
 
 <a class="text-center btn btn-primary"
