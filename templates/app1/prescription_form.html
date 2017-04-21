@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <h3 class="text-center">Use this form to create a new prescription entry.
+            Clicking on "Back to the prescription list" does not create anything.
+        </h3>
+    </div>
+    <form action = ""
+          method = "post"
+          enctype='multipart/form-data'>
+        {% csrf_token %}
+
+        {% if form.errors %}
+            {% for error in form.non_field_errors %}
+                <div class="isa_error fontsize150p">
+                    <i class="fa fa-times-circle"></i>
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="isa_error fontsize150p">
+                        <i class="fa fa-times-circle"></i>
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+    <table class="spacing-table">
+        <tr>
+            <td>
+            <label for="id_name">name:</label>
+                </td>
+            <td>
+            <input id="id_name" maxlength="254"
+                   name="name" type="text" required />
+                </td>
+            <td>
+            <span class="helptext text-right">
+                Prescription Name
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label for="id_doctor_name">Doctor's Name:</label>
+            </td>
+            <td>
+            <input id="id_doctor_name" maxlength="255"
+                   name="doctor_name" type="text" required />
+            </td>
+            <td>
+            <span class="helptext">
+                Doctor Name
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label for="id_amount">Left Eye Sphere:</label>
+                </td>
+            <td>
+            <input id="id_left_eye_sphere"
+                   maxlength="255"
+                   name="left_eye_sphere"
+                   type="number"
+                   pattern="[1-9][0-9]+(\.[0-9]+)"
+                   step="0.25" required />
+                </td>
+            <td>
+            <span class="helptext">
+                Sphere number. Format: +0.75 or -3.25
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label for="id_creation_DT">Created On:</label>
+    </td>
+        <td>
+            <input id="id_creation_DT"
+                   name="creation_DT"
+                   type="text"
+                   value="{% now 'Y-m-d H:i:s'%}"
+                   required />
+            </td>
+        <td>
+            <span class="helptext">
+                Creation Date/Time. Format: YYYY-MM-DD HH:MM:SS
+            </span></td>
+        </tr>
+        <tr>
+            <td>
+            <label for="id_modification_DT">Modified On:</label>
+                </td>
+            <td>
+            <input id="id_modification_DT" name="modification_DT"
+                   type="text" value="{% now 'Y-m-d H:i:s'%}"/>
+                </td>
+            <td>
+            <span class="helptext">
+                Date/Time. Format: YYYY-MM-DD HH:MM:SS
+            </span></td>
+        </tr>
+
+        <tr>
+            <td>
+            <label for="id_file">File to be uploaded: </label>
+                </td>
+            <td>
+            <input type = "file" id="id_file" name="file"
+                   placeholder ="Picture/scanned image here"/>
+                </td>
+            <td>
+            <span class="helptext">
+                File Name. Required.
+            </span></td>
+        </tr>
+
+</table>
+
+
+
+        <input class="btn btn-primary" type="submit" value="Save"/>
+    </form>
+
+    <a class="text-center btn btn-primary" href="{% url "prescriptions" %}">
+        Back to the Prescription list</a>
+
+{% endblock %}

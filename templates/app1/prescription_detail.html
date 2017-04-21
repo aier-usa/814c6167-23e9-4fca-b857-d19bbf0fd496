@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <h1 class="text-center">Prescription Details</h1>
+ID is: {{ Prescription.id }} <br/>
+Prescription Name is: {{ Prescription.name }} <br/>
+Store Name is: {{ Prescription.store_name }} <br/>
+Amount is: {{ Prescription.amount }} <br/>
+Prescription file URL is: {{ Prescription.file_url }} <br/>
+Created On: {{ Prescription.creation_DT }}<br/>
+Modified On: {{ Prescription.modification_DT }} <br/>
+
+
+<a class="text-center btn btn-primary"
+    href="{% url "Prescriptions" %}">
+    Back to the Prescription list
+</a>
+{% endblock %}

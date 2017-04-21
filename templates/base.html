@@ -65,6 +65,12 @@
                     Receipts</a>
             </li>
 
+            <li>
+                <a class="fontsize125p navbar-ihatepassword "
+                   href="{% url "prescriptions" %}">
+                    Prescriptions</a>
+            </li>
+
         {% else %}
         {% endif %}
             {% if user.is_authenticated %}

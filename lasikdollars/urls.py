@@ -34,6 +34,12 @@ from app1.views.ReceiptDelete import ReceiptDelete
 from app1.views.ReceiptDetail import ReceiptDetail
 from app1.views.ReceiptList import ReceiptList
 
+from app1.views.PrescriptionCreate import PrescriptionCreate
+from app1.views.PrescriptionUpdate import PrescriptionUpdate
+from app1.views.PrescriptionDelete import PrescriptionDelete
+from app1.views.PrescriptionDetail import PrescriptionDetail
+from app1.views.PrescriptionList import PrescriptionList
+
 
 from app1.views.ResetPasswordRequestView import \
     ResetPasswordRequestView
@@ -138,5 +144,25 @@ urlpatterns = [
     url(r'receipt/(?P<pk>[0-9]+)/delete/$',
         ReceiptDelete.as_view(),
         name='receipt_delete'),
+
+    url(r'prescriptions/$',
+        PrescriptionList.as_view(),
+        name='prescriptions'),
+
+    url(r'prescription/(?P<pk>[0-9]+)/$',
+        PrescriptionDetail.as_view(),
+        name='prescription_detail'),
+
+    url(r'prescription/create/$',
+        PrescriptionCreate.as_view(),
+        name='prescription_create'),
+
+    url(r'prescription/(?P<pk>[0-9]+)/update/$',
+        PrescriptionUpdate.as_view(),
+        name='prescription_update'),
+
+    url(r'prescription/(?P<pk>[0-9]+)/delete/$',
+        PrescriptionDelete.as_view(),
+        name='prescription_delete'),
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

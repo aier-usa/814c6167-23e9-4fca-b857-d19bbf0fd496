@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <link
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <script
+            src=
+        "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js">
+    </script>
+
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+    </script>
+
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+    </script>
+
+    <div class="">
+        <h1 class="text-center">Eyeglass and contact lens Prescriptions</h1>
+    </div>
+
+    <p class="text-center fontsize180p">
+        Maximum number of entries by our champion:
+        {{ max_num_Prescription }}<br/>
+        Your own number of entries:
+        {{ your_own_num_Prescription }}
+    </p>
+
+    <p class="text-center">
+        <a class="btn btn-primary" href="{% url "prescription_create" %}">
+            Create a New Prescription Entry
+        </a> or
+        <a class = "btn btn-primary text-center"
+         href="{% url "main" %}">
+        Back to the Main Page</a>
+    </p>
+
+      <table class="table table-responsive table-striped
+      table-bordered table-hover table-condensed">
+        <thead>
+          <tr >
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Automatically Generated Prescription ID">
+                    Prescription ID
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Name Given to the Prescription">
+                    Prescription Name
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Name of the Eyecare Store">
+                    Store Name
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Dollar amount spent for the item">
+                    Dollar Amount
+                </a>
+            </th>
+              <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Link to the uploaded document (click below to download/view)">
+                    Click below to download/view
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Choices: More, Edit, Delete">
+                    Actions
+                </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <td class="text-center">
+                        {{ item.id }}
+                    </td>
+                    <td class="text-center">
+                        {{ item.name }}
+                    </td>
+                    <td class="text-center">
+                        {{ item.store_name }}
+                    </td>
+                    <td class="text-center">
+                        {{ item.amount }}
+                    </td>
+                    <td class="text-center">
+                         <a href="{{ item.file_url }}">
+                             {{ item.short_filename}}       <!-- item dot filename -->
+                         </a>
+                    </td>
+
+                    <td class="text-center">
+                        <a class ="btn btn-primary"
+                           href="{% url "prescription_detail" pk=item.id %}">
+                            <i class="icon-lg ion-more"
+                               title="More...">
+                            </i></a>
+                        <a class ="btn btn-warning"
+                           href="{% url "prescription_update" pk=item.id %}">
+                           <i class="icon-lg ion-edit"
+                              title="Edit">
+                           </i>
+                        </a>
+                        <a class ="btn btn-danger"
+                           href="{% url "prescription_delete" pk=item.id %}">
+                           <i class="icon-lg ion-close-round"
+                              title="Delete">
+                           </i>
+                        </a>
+                     </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+    <p class="text-center">
+        <strong>Total Amount is:</strong> <span>{{ total_amount }}</span>
+    </p>
+
+    <p class="text-center">
+        <a class="btn btn-primary" href="{% url "prescription_create" %}">
+            Create a New Prescription Entry
+        </a> or
+        <a class = "btn btn-primary text-center"
+         href="{% url "main" %}">
+        Back to the Main Page</a>
+    </p>
+
+
+{% endblock %}
+

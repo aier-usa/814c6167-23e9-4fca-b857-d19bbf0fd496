@@ -1,0 +1,112 @@
+{%  extends "base.html" %}
+
+{% block content %}
+<div>
+    <h3 class="text-center">Use this form to update an old Prescription entry.
+    Clicking on "Back to the Prescription list" does not update anything.</h3>
+</div>
+<form action="" method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+        {% for error in form.non_field_errors %}
+            <div class="isa_error fontsize150p">
+                <i class="fa fa-times-circle"></i>
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="isa_error fontsize150p">
+                    <i class="fa fa-times-circle"></i>
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <p>
+        {{ form.errors.name }}
+        <label for="id_name">Prescription Name:</label>
+        <input
+                id="id_name"
+                maxlength="254"
+                name="name"
+                type="text"
+                value="{{ item.name }}" required/>
+        <span class="helptext">Prescription Name</span>
+    </p>
+    <p>
+        {{ form.errors.store_name }}
+        <label for="id_store_name">Store Name:</label>
+        <input
+                id="id_store_name"
+                maxlength="255"
+                name="store_name"
+                type="text"
+                value="{{ item.store_name }}" required/>
+        <span class="helptext">Store Name</span>
+    </p>
+    <p>
+        {{ form.errors.amount }}
+        <label for="id_amount">Dollar Amount:</label>
+        <input
+                id="id_amount"
+                maxlength="255"
+                name="amount"
+                value="{{ item.amount }}"
+                type="number"
+                pattern="[1-9][0-9]+(\.[0-9]+)"
+                step="0.01" required />
+        <span class="helptext">
+            Dollar Amount. Format: 1234567.89
+        </span>
+    </p>
+    <p>
+        {{ form.errors.creation_DT }}
+        <label for="id_creation_DT">Created On:
+        </label>
+        <input id="id_creation_DT"
+               name="creation_DT"
+               type="text"
+               value=
+               "{{ item.creation_DT|date:'Y-m-d' }} {{ item.creation_DT|time:'H:i:s' }}" />
+        <span class="helptext">
+            Creation Date/Time. Format: YYYY-MM-DD HH:MM:SS
+        </span>
+    </p>
+    <p>
+        {{ form.errors.modification_DT }}
+        <label for="id_modification_DT">
+            Modified On:
+        </label>
+        <input id="id_modification_DT"
+               name="modification_DT"
+               type="text"
+               value=
+               "{{ item.modification_DT|date:'Y-m-d' }} {{ item.modification_DT|time:'H:i:s' }}" />
+        <span class="helptext">
+            Modification Date/Time. Format: YYYY-MM-DD HH:MM:SS
+        </span>
+    </p>
+    <p>
+        {{ form.errors.comment }}
+        <label for="id_comment">Comment:</label>
+        <input id="id_comment" maxlength="255"
+               name="comment" type="text" value="{{ item.comment }}" />
+        <span class="helptext">Any comments are welcome
+        </span>
+    </p>
+    <p>
+        <strong>You are NOT allowed to change the Prescription file.</strong>
+        If you have uploaded the wrong file, please delete the old entry and create a
+        new entry with the correct file.
+    </p>
+
+    <input type="submit" value="Save" />
+</form>
+
+<a class="text-center btn btn-primary" href="{% url "Prescriptions" %}">
+    Back to the Prescription list</a>
+
+{% endblock %}
