@@ -60,7 +60,7 @@
         </tr>
         <tr>
             <td>
-            <label for="id_amount">Left Eye Sphere:</label>
+            <label for="id_left_eye_sphere">Left Eye Sphere:</label>
                 </td>
             <td>
             <input id="id_left_eye_sphere"
@@ -73,6 +73,24 @@
             <td>
             <span class="helptext">
                 Sphere number. Format: +0.75 or -3.25
+            </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label for="id_left_eye_cylinder">Left Eye Cylinder:</label>
+                </td>
+            <td>
+            <input id="id_left_eye_cylinder"
+                   maxlength="255"
+                   name="left_eye_cylinder"
+                   type="number"
+                   pattern="[1-9][0-9]+(\.[0-9]+)"
+                   step="0.25" required />
+                </td>
+            <td>
+            <span class="helptext">
+                Cylinder number. Format: +0.75 or -3.25
             </span>
             </td>
         </tr>

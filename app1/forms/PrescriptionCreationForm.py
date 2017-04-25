@@ -9,8 +9,14 @@ class PrescriptionCreationForm(forms.ModelForm):
 
     class Meta:
         model = Prescription
-        fields = ("name", "doctor_name", "filename",
-                  "comment", "creation_DT", "modification_DT")
+        fields = ("name",
+                  "doctor_name",
+                  "filename",
+                  "left_eye_sphere",
+                  "left_eye_cylinder",
+                  "comment",
+                  "creation_DT",
+                  "modification_DT")
         labels = {
             'creation_DT': 'Created On',
             'modification_DT': 'Modified On',
@@ -51,6 +57,17 @@ class PrescriptionCreationForm(forms.ModelForm):
         if "," in store_name:
             raise ValidationError("Punctuation mark comma (,) is not allowed.")
         return store_name
+
+
+    def clean_left_eye_sphere(self):
+        left_eye_sphere = self.cleaned_data['left_eye_sphere']
+        return left_eye_sphere
+
+
+    def clean_left_eye_cylinder(self):
+        left_eye_cylinder = self.cleaned_data['left_eye_cylinder']
+        return left_eye_cylinder
+
 
     def clean_creation_DT(self):
         creation_DT = self.cleaned_data['creation_DT']

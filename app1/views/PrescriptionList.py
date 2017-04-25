@@ -7,8 +7,14 @@ from app1.models import (
 
 class PrescriptionList(LoginRequiredMixin, ListView):
     model = Prescription
-    fields = ['id', 'name', 'creation_DT',
-              'modification_DT', 'filename', 'file_url']
+    fields = ['id',
+              'name',
+              'creation_DT',
+              'left_eye_cylinder',
+              'left_eye_sphere',
+              'modification_DT',
+              'filename',
+              'file_url']
 
     def get_queryset(self):
         uid = self.request.user.id
