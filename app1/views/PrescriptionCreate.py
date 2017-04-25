@@ -118,6 +118,10 @@ class PrescriptionCreate(LoginRequiredMixin, CreateView):
 
             a_left_eye_sphere = form.cleaned_data['left_eye_sphere']
             a_left_eye_cylinder = form.cleaned_data['left_eye_cylinder']
+            a_left_eye_axis = form.cleaned_data['left_eye_axis']
+            a_right_eye_sphere = form.cleaned_data['right_eye_sphere']
+            a_right_eye_cylinder = form.cleaned_data['right_eye_cylinder']
+            a_right_eye_axis = form.cleaned_data['right_eye_axis']
 
             acreation_DT = form.cleaned_data['creation_DT']
             print(acreation_DT)
@@ -135,6 +139,10 @@ class PrescriptionCreate(LoginRequiredMixin, CreateView):
                     doctor_name=adoctor_name,
                     left_eye_sphere = a_left_eye_sphere,
                     left_eye_cylinder=a_left_eye_cylinder,
+                    left_eye_axis=a_left_eye_axis,
+                    right_eye_sphere=a_right_eye_sphere,
+                    right_eye_cylinder=a_right_eye_cylinder,
+                    right_eye_axis=a_right_eye_axis,
                     creation_DT=acreation_DT,
                     modification_DT=amodification_DT,
                     filename=long_name,
@@ -146,6 +154,10 @@ class PrescriptionCreate(LoginRequiredMixin, CreateView):
                     doctor_name=adoctor_name,
                     left_eye_sphere=a_left_eye_sphere,
                     left_eye_cylinder=a_left_eye_cylinder,
+                    left_eye_axis=a_left_eye_axis,
+                    right_eye_sphere=a_right_eye_sphere,
+                    right_eye_cylinder=a_right_eye_cylinder,
+                    right_eye_axis=a_right_eye_axis,
                     creation_DT=acreation_DT,
                     modification_DT=amodification_DT,
                     filename="",

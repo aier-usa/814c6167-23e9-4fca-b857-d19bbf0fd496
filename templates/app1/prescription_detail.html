@@ -2,17 +2,25 @@
 
 {% block content %}
         <h1 class="text-center">Prescription Details</h1>
-ID is: {{ Prescription.id }} <br/>
-Prescription Name is: {{ Prescription.name }} <br/>
-Store Name is: {{ Prescription.store_name }} <br/>
-Amount is: {{ Prescription.amount }} <br/>
-Prescription file URL is: {{ Prescription.file_url }} <br/>
-Created On: {{ Prescription.creation_DT }}<br/>
-Modified On: {{ Prescription.modification_DT }} <br/>
+    ID is: {{ prescription.id }} <br/>
+    Prescription Name is: {{ prescription.name }} <br/>
+
+    Left Eye Sphere is: {{ prescription.left_eye_sphere }} <br/>
+    Left Eye Cylinder is: {{ prescription.left_eye_cylinder }} <br/>
+    Left Eye Axis is: {{ prescription.left_eye_axis }} <br/>
+
+    Right Eye Sphere is: {{ prescription.right_eye_sphere }} <br/>
+    Right Eye Cylinder is: {{ prescription.right_eye_cylinder }} <br/>
+    Right Eye Axis is: {{ prescription.right_eye_axis }} <br/>
+
+
+    Prescription file URL is: {{ prescription.file_url }} <br/>
+    Created On: {{ prescription.creation_DT }}<br/>
+    Modified On: {{ prescription.modification_DT }} <br/>
 
 
 <a class="text-center btn btn-primary"
-    href="{% url "Prescriptions" %}">
+    href="{% url "prescriptions" %}">
     Back to the Prescription list
 </a>
 {% endblock %}

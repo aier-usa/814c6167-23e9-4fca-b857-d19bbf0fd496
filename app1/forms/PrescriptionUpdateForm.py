@@ -9,6 +9,15 @@ class PrescriptionUpdateForm(forms.ModelForm):
         model = Prescription
         fields = (
             "name",
+            "doctor_name",
+
+            "left_eye_sphere",
+            "left_eye_cylinder",
+            "left_eye_axis",
+            "right_eye_sphere",
+            "right_eye_cylinder",
+            "right_eye_axis",
+
             "creation_DT",
             "modification_DT",
             "comment"

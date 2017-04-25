@@ -97,7 +97,7 @@ class Prescription(models.Model):
 
     def get_absolute_url(self):
         # return reverse('password', kwargs={'pk': self.pk})
-        return reverse('Prescription_detail', kwargs={'pk': self.pk})
+        return reverse('prescription_detail', kwargs={'pk': self.pk})
 
 
 class MaxNumReceipt(models.Model):

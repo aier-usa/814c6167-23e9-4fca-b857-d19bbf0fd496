@@ -9,7 +9,7 @@ from app1.utils.general import s3_delete_object
 
 class PrescriptionDelete(LoginRequiredMixin, DeleteView):
     model = Prescription
-    success_url = reverse_lazy('Prescriptions')
+    success_url = reverse_lazy('prescriptions')
     template_name = "app1/Prescription_confirm_delete.html"
 
     def post(self, request, *args, **kwargs):

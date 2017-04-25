@@ -14,6 +14,10 @@ class PrescriptionCreationForm(forms.ModelForm):
                   "filename",
                   "left_eye_sphere",
                   "left_eye_cylinder",
+                  "left_eye_axis",
+                  "right_eye_sphere",
+                  "right_eye_cylinder",
+                  "right_eye_axis",
                   "comment",
                   "creation_DT",
                   "modification_DT")
@@ -63,11 +67,25 @@ class PrescriptionCreationForm(forms.ModelForm):
         left_eye_sphere = self.cleaned_data['left_eye_sphere']
         return left_eye_sphere
 
-
     def clean_left_eye_cylinder(self):
         left_eye_cylinder = self.cleaned_data['left_eye_cylinder']
         return left_eye_cylinder
 
+    def clean_left_eye_axis(self):
+        left_eye_axis = self.cleaned_data['left_eye_axis']
+        return left_eye_axis
+
+    def clean_right_eye_sphere(self):
+        right_eye_sphere = self.cleaned_data['right_eye_sphere']
+        return right_eye_sphere
+
+    def clean_right_eye_cylinder(self):
+        right_eye_cylinder = self.cleaned_data['right_eye_cylinder']
+        return right_eye_cylinder
+
+    def clean_right_eye_axis(self):
+        right_eye_axis = self.cleaned_data['right_eye_axis']
+        return right_eye_axis
 
     def clean_creation_DT(self):
         creation_DT = self.cleaned_data['creation_DT']
