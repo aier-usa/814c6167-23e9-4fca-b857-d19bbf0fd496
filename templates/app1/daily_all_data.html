@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+      <table class="table table-responsive table-striped
+      table-bordered table-hover table-condensed">
+        <thead>
+          <tr >
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Date">
+                    Date
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Number of new users">
+                    Number of New Users
+                </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td class="text-center">
+                        {{ item.date }}
+                    </td>
+                    <td class="text-center">
+                        {{ item.number }}
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+    <p class="text-center">
+        <a class = "btn btn-primary text-center"
+         href="{% url "main" %}">
+        Back to the Main Page</a>
+    </p>
+
+
+{% endblock %}
+

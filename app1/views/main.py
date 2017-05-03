@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from app1.utils.generate import (
-    create_max_receipt
+    create_max_receipt,
+    gen_daily_all_data
 )
 from app1.models import (
     Receipt,
@@ -37,3 +38,8 @@ def our_story(request):
 def gen_max_receipt(request):
     create_max_receipt()
     return render(request, 'app1/gen_max_receipt.html', {})
+
+
+def daily_all_data(request):
+    data = gen_daily_all_data()
+    return render(request, 'app1/daily_all_data.html', {'data': data})

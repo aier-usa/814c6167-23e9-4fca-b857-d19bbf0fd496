@@ -1,3 +1,5 @@
+from django.db import models
+from django.contrib.auth.models import User
 from django.db.models import Count
 from datetime import datetime
 
@@ -5,6 +7,31 @@ from datetime import datetime
 from app1.models import (
     Receipt,
     MaxNumReceipt)
+
+
+def gen_daily_all_data():
+    # the format is: 2017-01-01 34
+    #                2017-03-21 40
+    returned_data=[]
+
+    date_map = {}
+
+    for u in User.objects.all():
+        date_j = u.date_joined
+        only_date = date_j.date().strftime('%Y-%m-%d')
+
+        if only_date not in date_map:
+            date_map[only_date] = 1
+        else:
+            date_map[only_date] += 1
+
+    for key, value in date_map.items():
+        returned_data.append({'date': key, 'number': value})
+
+    returned_data.append({'date': '2017-03-21', 'number': 40})
+    returned_data.append({'date': '2000-09-09', 'number': 100})
+
+    return returned_data
 
 
 def create_max_receipt():

@@ -26,7 +26,8 @@ from app1.views.main import (
     benefits,
     demo,
     our_story,
-    gen_max_receipt)
+    gen_max_receipt,
+    daily_all_data)
 
 from app1.views.ReceiptCreate import ReceiptCreate
 from app1.views.ReceiptUpdate import ReceiptUpdate
@@ -77,6 +78,9 @@ urlpatterns = [
 
 
     url(r'^gen/$', gen_max_receipt, name = "gen_max_receipt"),
+
+    url(r'^dailyalldata/$', daily_all_data, name="daily_all_data"),
+
 
     url(r'^admin/', admin.site.urls),
     url(r'^su/', admin.site.urls),
