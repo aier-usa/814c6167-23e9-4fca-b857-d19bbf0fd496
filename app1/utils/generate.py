@@ -12,7 +12,7 @@ from app1.models import (
 def gen_daily_all_data():
     # the format is: 2017-01-01 34
     #                2017-03-21 40
-    returned_data=[]
+    raw_data=[]
 
     date_map = {}
 
@@ -26,11 +26,9 @@ def gen_daily_all_data():
             date_map[only_date] += 1
 
     for key, value in date_map.items():
-        returned_data.append({'date': key, 'number': value})
+        raw_data.append({'date': key, 'number': value})
 
-    returned_data.append({'date': '2017-03-21', 'number': 40})
-    returned_data.append({'date': '2000-09-09', 'number': 100})
-
+    returned_data = sorted(raw_data, key=lambda k: k['date'], reverse=True)
     return returned_data
 
 

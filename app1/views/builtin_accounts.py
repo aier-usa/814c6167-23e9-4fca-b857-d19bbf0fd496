@@ -26,33 +26,56 @@ from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 
 
-from app1.forms.UserCreationWithMoreForm \
-    import UserCreationWithMoreForm
-from app1.forms.CustomUserChangeForm \
-    import CustomUserChangeForm
+from app1.forms.UserCreationWithMoreForm import (
+    UserCreationWithMoreForm)
+from app1.forms.CustomUserChangeForm import (
+    CustomUserChangeForm)
+from app1.forms.ProfileForm import ProfileForm
+
+from app1.models import Profile
+from django.contrib.auth.models import User
 
 
 def accounts_profile(request):
+    uid = request.user.id
+    a_profile = Profile.objects.get(user_id=uid)
+    cell_phone = a_profile.cell_phone
     return render(request,
-                  "registration/accounts-profile.html", {})
+                  "registration/accounts-profile.html", {'cell_phone': cell_phone})
 
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationWithMoreForm(request.POST)
-        if form.is_valid():
+        form = UserCreationWithMoreForm(
+            request.POST)
+        profile_form = ProfileForm(
+            request.POST)
+        print(form)
+        print(form.is_valid())
+        print(profile_form)
+        print(profile_form.is_valid())
+
+        if form.is_valid() and profile_form.is_valid():
             form.save()
+
+
             # get the username and password
             username = request.POST['username']
             password = request.POST['password1']
             # authenticate user then login
             user = authenticate(username=username, password=password)
+
+            profile_form.user_id = user.id
+            profile_form.save()
+
             login(request, user)
             return HttpResponseRedirect("/")
     else:
         form = UserCreationWithMoreForm()
+        profile_form = ProfileForm()
     return render(request, "registration/register.html", {
         'form': form,
+        'profile_form': profile_form
     })
 
 
@@ -84,6 +107,9 @@ def accounts_user_change(request):
         passed_last_name = request.user.last_name
         passed_email = request.user.email
 
+        passed_cell_phone = request.user.profile.cell_phone
+        passed_street = request.user.profile.street
+
         # form = UserChangeForm(instance=request.user)
         # form = UserProfileForm(instance=request.user)
         return render(request,
@@ -92,7 +118,10 @@ def accounts_user_change(request):
                        'passed_username': passed_username,
                        'passed_first_name': passed_first_name,
                        'passed_last_name': passed_last_name,
-                       'passed_email': passed_email
+                       'passed_email': passed_email,
+                       'passed_cell_phone': passed_cell_phone,
+                       'passed_street': passed_street
+
                        })
     elif request.method == 'POST':
         form = CustomUserChangeForm(request.POST)
@@ -110,6 +139,10 @@ def accounts_user_change(request):
                 form.cleaned_data['last_name']
             entered_email = \
                 form.cleaned_data['email']
+            entered_street = \
+                form.cleaned_data['street']
+            entered_cell_phone = \
+                form.cleaned_data['cell_phone']
 
             current_user_id = request.user.id
             same_username_entered = False
@@ -143,6 +176,12 @@ def accounts_user_change(request):
             retrieved_user.last_name = entered_last_name
             retrieved_user.email = entered_email
             retrieved_user.save()
+
+            retrieved_profile = request.user.profile
+            retrieved_profile.street = entered_street
+            retrieved_profile.cell_phone = entered_cell_phone
+            retrieved_profile.save()
+
 
             if same_username_entered:
                 return HttpResponseRedirect(
