@@ -1,12 +1,8 @@
 from django.shortcuts import render
 from app1.utils.generate import (
     create_max_receipt,
-    gen_daily_all_data
-)
-from app1.models import (
-    Receipt,
-    MaxNumReceipt
-)
+    gen_daily_all_data,
+    get_selected_users)
 
 
 def testing(request):
@@ -43,3 +39,9 @@ def gen_max_receipt(request):
 def daily_all_data(request):
     data = gen_daily_all_data()
     return render(request, 'app1/daily_all_data.html', {'data': data})
+
+
+def users_joined_in_a_date(request, **kwargs):
+    a_date = kwargs['date_joined']
+    data = get_selected_users(a_date)
+    return render(request, 'app1/selected_users.html', {'data': data})

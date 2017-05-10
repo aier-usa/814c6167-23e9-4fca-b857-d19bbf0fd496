@@ -46,3 +46,6 @@ def create_max_receipt():
     max_num_receipt_obj.save()
 
 
+def get_selected_users(a_date):
+    users = User.objects.filter(date_joined__startswith=a_date)
+    return users

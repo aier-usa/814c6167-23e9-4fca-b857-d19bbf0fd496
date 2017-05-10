@@ -27,7 +27,8 @@ from app1.views.main import (
     demo,
     our_story,
     gen_max_receipt,
-    daily_all_data)
+    daily_all_data,
+    users_joined_in_a_date)
 
 from app1.views.ReceiptCreate import ReceiptCreate
 from app1.views.ReceiptUpdate import ReceiptUpdate
@@ -81,6 +82,8 @@ urlpatterns = [
 
     url(r'^dailyalldata/$', daily_all_data, name="daily_all_data"),
 
+    url(r'^users-joined-in-a-date/(?P<date_joined>[0-9\-]+)$',
+        users_joined_in_a_date, name="users_joined_in_a_date"),
 
     url(r'^admin/', admin.site.urls),
     url(r'^su/', admin.site.urls),

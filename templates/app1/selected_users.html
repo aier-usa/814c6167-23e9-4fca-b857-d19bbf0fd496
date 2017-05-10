@@ -11,16 +11,24 @@
                 <a data-toggle="tooltip"
                    data-placement="auto"
                    title=
-                   "Date">
-                    Date
+                   "Username">
+                    Username
                 </a>
             </th>
             <th class="text-center">
                 <a data-toggle="tooltip"
                    data-placement="auto"
                    title=
-                   "Number of new users">
-                    Number of New Users
+                   "First Name">
+                    First Name
+                </a>
+            </th>
+            <th class="text-center">
+                <a data-toggle="tooltip"
+                   data-placement="auto"
+                   title=
+                   "Last Name">
+                    Last Name
                 </a>
             </th>
           </tr>
@@ -29,15 +37,14 @@
             {% for item in data %}
                 <tr>
                     <td class="text-center">
-                        <a class ="btn btn-primary"
-                           href="{% url "users_joined_in_a_date" date_joined=item.date %}">
-                                {{ item.date }}
-                        </a>
+                        {{ item.username }}
                     </td>
                     <td class="text-center">
-                        {{ item.number }}
+                        {{ item.first_name }}
                     </td>
-
+                    <td class="text-center">
+                        {{ item.last_name }}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
