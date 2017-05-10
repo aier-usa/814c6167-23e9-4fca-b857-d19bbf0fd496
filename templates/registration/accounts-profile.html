@@ -4,21 +4,20 @@
     <h3>User Information change.</h3>
 
     <p>
-    User ID is: {{ user.id }}
-    Cell phone number is: {{ cell_phone }}
+    Your User ID is: {{ user.id }}
     </p>
 
     <p>
         <a class="btn btn-danger"
            href="{% url 'password_change' %}">Password Change ONLY</a>
     </p>
-    <p>
+    <p hidden>
         <a class="btn btn-primary"
            href="{% url 'password_reset' %}">Password Reset</a>
     </p>
     <hr/>
     <p>
-        <a class="btn btn-danger"
+        <a class="btn btn-primary"
            href="{% url 'user_change' %}">Change User Information</a>
     </p>
 

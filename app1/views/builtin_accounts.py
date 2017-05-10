@@ -107,8 +107,15 @@ def accounts_user_change(request):
         passed_last_name = request.user.last_name
         passed_email = request.user.email
 
-        passed_cell_phone = request.user.profile.cell_phone
         passed_street = request.user.profile.street
+        passed_city = request.user.profile.city
+        passed_state = request.user.profile.state
+        passed_zip = request.user.profile.zip
+        passed_country = request.user.profile.country
+        passed_cell_phone = request.user.profile.cell_phone
+        passed_work_phone = request.user.profile.work_phone
+        passed_home_phone = request.user.profile.home_phone
+
 
         # form = UserChangeForm(instance=request.user)
         # form = UserProfileForm(instance=request.user)
@@ -119,8 +126,15 @@ def accounts_user_change(request):
                        'passed_first_name': passed_first_name,
                        'passed_last_name': passed_last_name,
                        'passed_email': passed_email,
+                       'passed_street': passed_street,
+                       'passed_city': passed_city,
+                       'passed_state': passed_state,
+                       'passed_zip': passed_zip,
+                       'passed_country': passed_country,
+
                        'passed_cell_phone': passed_cell_phone,
-                       'passed_street': passed_street
+                       'passed_work_phone': passed_work_phone,
+                       'passed_home_phone': passed_home_phone,
 
                        })
     elif request.method == 'POST':
@@ -141,8 +155,22 @@ def accounts_user_change(request):
                 form.cleaned_data['email']
             entered_street = \
                 form.cleaned_data['street']
+            entered_city = \
+                form.cleaned_data['city']
+            entered_state = \
+                form.cleaned_data['state']
+            entered_zip = \
+                form.cleaned_data['zip']
+            entered_country = \
+                form.cleaned_data['country']
+
             entered_cell_phone = \
                 form.cleaned_data['cell_phone']
+            entered_home_phone = \
+                form.cleaned_data['home_phone']
+            entered_work_phone = \
+                form.cleaned_data['work_phone']
+
 
             current_user_id = request.user.id
             same_username_entered = False
@@ -179,7 +207,15 @@ def accounts_user_change(request):
 
             retrieved_profile = request.user.profile
             retrieved_profile.street = entered_street
+            retrieved_profile.city = entered_city
+            retrieved_profile.state = entered_state
+            retrieved_profile.zip = entered_zip
+            retrieved_profile.country = entered_country
+
             retrieved_profile.cell_phone = entered_cell_phone
+            retrieved_profile.work_phone = entered_work_phone
+            retrieved_profile.home_phone = entered_home_phone
+
             retrieved_profile.save()
 
 
