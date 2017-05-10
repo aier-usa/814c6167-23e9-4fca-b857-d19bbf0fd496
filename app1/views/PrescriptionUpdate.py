@@ -10,7 +10,7 @@ class PrescriptionUpdate(LoginRequiredMixin, UpdateView):
     model = Prescription
     form_class = PrescriptionUpdateForm
 
-    template_name = "app1/Prescription_update.html"
+    template_name = "app1/prescription_update.html"
 
     def get_context_data(self, **kwargs):
         context = super(
