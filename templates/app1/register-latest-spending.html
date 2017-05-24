@@ -1,0 +1,23 @@
+{% extends "base-without-navbar.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+    <div class="row">
+    <p>
+        Would you like to register your latest spending on glasses or contacts?
+    </p>
+
+
+    <p>
+        <a href="{% url "receipts" %}">Yes</a>
+    </p>
+
+    <p>
+        <a href="what should we do here?">No</a>
+    </p>
+
+    </div>
+
+{% endblock %}

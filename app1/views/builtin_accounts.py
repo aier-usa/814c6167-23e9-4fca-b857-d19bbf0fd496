@@ -58,7 +58,6 @@ def register(request):
         if form.is_valid() and profile_form.is_valid():
             form.save()
 
-
             # get the username and password
             username = request.POST['username']
             password = request.POST['password1']
