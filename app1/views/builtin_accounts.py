@@ -217,7 +217,6 @@ def accounts_user_change(request):
 
             retrieved_profile.save()
 
-
             if same_username_entered:
                 return HttpResponseRedirect(
                     reverse('user_change_done'))
@@ -331,11 +330,13 @@ def user_login(request):
                 # We'll send the user back to the homepage.
                 login(request, user)
                 # return HttpResponseRedirect('/')
-                return HttpResponseRedirect(reverse('receipts'))
+                # return HttpResponseRedirect(reverse('receipts'))
+                return render(request, 'app1/register-latest-spending.html', {})
+
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse(
-                    "Your ihatepassword.com account is disabled.")
+                    "Your account is disabled.")
         else:
             # Bad login details were provided. So we can't log the user in.
             print("Invalid login details: {0}, {1}".format(

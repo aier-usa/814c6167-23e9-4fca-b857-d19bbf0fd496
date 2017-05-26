@@ -24,7 +24,7 @@ class ProfileForm(forms.ModelForm):
         profile.home_phone = self.cleaned_data["home_phone"]
         profile.street = self.cleaned_data["street"]
         profile.city = self.cleaned_data["city"]
-        profile.state = self.cleaned_data["city"]
+        profile.state = self.cleaned_data["state"]
         profile.zip = self.cleaned_data["zip"]
         profile.country = self.cleaned_data["country"]
 
