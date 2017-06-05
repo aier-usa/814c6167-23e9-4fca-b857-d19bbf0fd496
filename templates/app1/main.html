@@ -51,47 +51,15 @@
           </span>
       </p>
       <p>
-          <label for="id_email">
-              Email:
-          </label>
-          <input id="id_email"
-                 name="email"
-                 type="email" required />
-          <span class="helptext">
-              Required. A valid email address
-          </span>
-      </p>
-      <p>
-          <label for="id_first_name">
-              First name:
-          </label>
-          <input id="id_first_name"
-                 maxlength="30"
-                 name="first_name"
-                 type="text" />
-          <span class="helptext">
-              Optional. Max # of characters: 30
-          </span>
-      </p>
-      <p>
-          <label for="id_last_name">
-              Last name:
-          </label>
-          <input id="id_last_name"
-                 maxlength="30"
-                 name="last_name"
-                 type="text" />
-          <span class="helptext">
-              Optional. Max # of characters: 30
-          </span>
-      </p>
-      <p>
           <label for="id_password1">
               Password:
           </label>
           <input id="id_password1"
                  name="password1"
                  type="password" required />
+          <span class="helptext">
+              Required.
+          </span>
       </p>
       <p>
           <label for="id_password2">
@@ -105,6 +73,32 @@
           </span>
       </p>
 
+      <p>
+          <label for="id_first_name">
+              First name:
+          </label>
+          <input id="id_first_name"
+                 maxlength="30"
+                 name="first_name"
+                 type="text" required/>
+          <span class="helptext">
+              Required. Max # of characters: 30
+          </span>
+      </p>
+      <p>
+          <label for="id_last_name">
+              Last name:
+          </label>
+          <input id="id_last_name"
+                 maxlength="30"
+                 name="last_name"
+                 type="text" required/>
+          <span class="helptext">
+              Required. Max # of characters: 30
+          </span>
+      </p>
+
+
 
 
       <p>
@@ -113,7 +107,10 @@
           <input id="id_street"
                  maxlength="255"
                  name="street"
-                 type="text"/>
+                 type="text" required/>
+          <span class="helptext">
+              Required.
+          </span>
       </p>
 
       <p>
@@ -122,7 +119,10 @@
           <input id="id_city"
                  maxlength="255"
                  name="city"
-                 type="text"/>
+                 type="text" required/>
+          <span class="helptext">
+              Required.
+          </span>
       </p>
 
       <p>
@@ -181,6 +181,9 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
             </select>
+          <span class="helptext">
+              Required.
+          </span>
       </p>
 
 
@@ -190,7 +193,10 @@
           <input id="id_zip"
                  maxlength="255"
                  name="zip"
-                 type="text"/>
+                 type="text" required/>
+          <span class="helptext">
+              Required.
+          </span>
       </p>
 
       <p>
@@ -447,6 +453,9 @@
                 <option value="ZM">Zambia</option>
                 <option value="ZW">Zimbabwe</option>
             </select>
+          <span class="helptext">
+              Required.
+          </span>
       </p>
 
       <p>
@@ -455,9 +464,12 @@
           <input id="id_cell_phone"
                  maxlength="100"
                  name="cell_phone"
-                 type="text"/>
+                 type="text" required/>
+          <span class="helptext">
+              Required.
+          </span>
       </p>
-      <p>
+      <p hidden>
           <label for="id_work_phone">
               Work phone:
           </label>
@@ -465,8 +477,11 @@
                  maxlength="100"
                  name="work_phone"
                  type="text"/>
+          <span class="helptext">
+              Required.
+          </span>
       </p>
-      <p>
+      <p hidden>
           <label for="id_home_phone">
               Home phone:
           </label>
@@ -474,6 +489,21 @@
                  maxlength="100"
                  name="home_phone"
                  type="text"/>
+          <span class="helptext">
+              Required.
+          </span>
+      </p>
+
+      <p>
+          <label for="id_email">
+              Email:
+          </label>
+          <input id="id_email"
+                 name="email"
+                 type="email" required/>
+          <span class="helptext">
+              Required. A valid email address
+          </span>
       </p>
 
       <p>
@@ -486,7 +516,7 @@
 
 
   <div class="panel panel-danger">
-      <strong>Are you already a user?</strong>
+      <strong>Are you already a user? If yes, please do the following:</strong>
     <p>
         <a class ="btn btn-primary"
            href="{% url "login" %}">
