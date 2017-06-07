@@ -1,5 +1,4 @@
 from django import forms
-from django.utils.translation import ugettext as _
 from django.core.exceptions import ValidationError
 from app1.models import Prescription
 

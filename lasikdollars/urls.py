@@ -23,12 +23,10 @@ from app1.views.main import (
     testing,
     main,
     how_to_use,
-    benefits,
-    demo,
-    our_story,
     gen_max_receipt,
     daily_all_data,
-    users_joined_in_a_date)
+    users_joined_in_a_date,
+    eyecare_q_and_a)
 
 from app1.views.ReceiptCreate import ReceiptCreate
 from app1.views.ReceiptUpdate import ReceiptUpdate
@@ -68,19 +66,11 @@ urlpatterns = [
     url(r'^$', main, name='main'),
     url(r'^how-to-use/$', how_to_use, name="how_to_use"),
 
-    url(r'^benefits/$',
-        benefits,
-        name="benefits"),
-
-
-    url(r'^our-story/$',
-        our_story,
-        name="our_story"),
-
-
     url(r'^gen/$', gen_max_receipt, name = "gen_max_receipt"),
 
     url(r'^dailyalldata/$', daily_all_data, name="daily_all_data"),
+
+    url(r'^eyecare-q-and-a/$', eyecare_q_and_a, name="eyecare_q_and_a"),
 
     url(r'^users-joined-in-a-date/(?P<date_joined>[0-9\-]+)$',
         users_joined_in_a_date, name="users_joined_in_a_date"),
@@ -172,4 +162,4 @@ urlpatterns = [
         PrescriptionDelete.as_view(),
         name='prescription_delete'),
 
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

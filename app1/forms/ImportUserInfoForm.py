@@ -1,5 +1,6 @@
 from django import forms
 
+
 class ImportUserInfoForm(forms.Form):
     all_info = forms.CharField(
         required=True,

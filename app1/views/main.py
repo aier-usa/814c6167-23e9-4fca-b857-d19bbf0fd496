@@ -1,44 +1,20 @@
-from django.shortcuts import render
 from app1.utils.generate import (
     create_max_receipt,
     gen_daily_all_data,
     get_selected_users)
 from django.shortcuts import (
-    render,
-    redirect,
-    resolve_url)
+    render)
 from django.contrib.auth import (
-    login,
-    logout,
-    update_session_auth_hash)
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import (
-    AuthenticationForm,
-    PasswordChangeForm,
-    SetPasswordForm)
-from django.http import HttpResponse
-from django.utils.http import urlsafe_base64_decode
+    login)
 from django.contrib.auth import (
-    authenticate,
-    get_user_model)
-from django.core.urlresolvers import reverse
-from django.contrib.auth.models import User
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.encoding import force_text
-
-from django.template import RequestContext
-from django.http import HttpResponseRedirect
-from django.template.response import TemplateResponse
+    authenticate)
 
 
 from app1.forms.UserCreationWithMoreForm import (
     UserCreationWithMoreForm)
-from app1.forms.CustomUserChangeForm import (
-    CustomUserChangeForm)
-from app1.forms.ProfileForm import ProfileForm
 
-from app1.models import Profile
-from django.contrib.auth.models import User
+
+from app1.forms.ProfileForm import ProfileForm
 
 
 def testing(request):
@@ -85,24 +61,12 @@ def how_to_use(request):
     return render(request, 'app1/how_to_use.html', {})
 
 
-def demo(request):
-    return render(request, 'app1/demo.html', {})
-
-
-def benefits(request):
-    return render(request,
-                  'app1/benefits.html', {})
-
-
-def our_story(request):
-    return render(request,
-                  'app1/our_story.html', {})
-
-
 def gen_max_receipt(request):
     create_max_receipt()
     return render(request, 'app1/gen_max_receipt.html', {})
 
+def eyecare_q_and_a(request):
+    return render(request, 'app1/eyecare_q_and_a.html', {})
 
 def daily_all_data(request):
     data = gen_daily_all_data()

@@ -3,7 +3,6 @@ from django.contrib.auth.forms import (
     UserCreationForm)
 
 from django.contrib.auth.models import User
-from app1.models import Profile
 
 class UserCreationWithMoreForm(UserCreationForm):
     email = forms.EmailField(

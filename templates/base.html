@@ -68,6 +68,12 @@
         {% if user.is_authenticated %}
             <li>
                 <a class="fontsize125p navbar-ihatepassword "
+                   href="{% url "eyecare_q_and_a" %}">
+                    Eyecare Q&A</a>
+            </li>
+
+            <li>
+                <a class="fontsize125p navbar-ihatepassword "
                    href="{% url "receipts" %}">
                     Receipts</a>
             </li>
