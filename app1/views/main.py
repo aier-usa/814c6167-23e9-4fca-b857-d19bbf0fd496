@@ -73,6 +73,9 @@ def daily_all_data(request):
     return render(request, 'app1/daily_all_data.html', {'data': data})
 
 
+
+
+
 def users_joined_in_a_date(request, **kwargs):
     a_date = kwargs['date_joined']
     data = get_selected_users(a_date)
