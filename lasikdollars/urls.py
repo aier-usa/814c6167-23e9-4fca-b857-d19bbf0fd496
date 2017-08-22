@@ -26,7 +26,20 @@ from app1.views.main import (
     gen_max_receipt,
     daily_all_data,
     users_joined_in_a_date,
-    eyecare_q_and_a)
+    eyecare_q_and_a,
+
+    About_us,
+    Contact_us,
+    Q_and_A,
+    Contacts_glasses,
+    Cell_phone_computer_Eye_Syndrome,
+    D3_SMILE,
+    D3_LASIK,
+    D3_Kamra,
+    D3_Raindrop,
+    D3_Forever_Young_Lens,
+    D3_Laser_Cataract,
+)
 
 from app1.views.ReceiptCreate import ReceiptCreate
 from app1.views.ReceiptUpdate import ReceiptUpdate
@@ -67,6 +80,27 @@ urlpatterns = [
     url(r'^how-to-use/$', how_to_use, name="how_to_use"),
 
     url(r'^gen/$', gen_max_receipt, name = "gen_max_receipt"),
+
+    url(r'^About_us/$', About_us, name="About_us"),
+    url(r'^Contact_us/$', Contact_us, name ="Contact_us"),
+    url(r'^Q_and_A/$', Q_and_A, name="Q_and_A"),
+    url(r'^Contacts_glasses/$', Contacts_glasses,
+        name="Contacts_glasses"),
+    url(r'^Cell_phone_computer_Eye_Syndrome/$',
+        Cell_phone_computer_Eye_Syndrome,
+        name="Cell_phone_computer_Eye_Syndrome"),
+    url(r'^3D_SMILE/$', D3_SMILE, name="3D_SMILE"),
+    url(r'^3D_LASIK/$',  D3_LASIK, name="3D_LASIK"),
+    url(r'^3D_Kamra/$',   D3_Kamra, name="3D_Kamra"),
+    url(r'^3D_Raindrop/$',D3_Raindrop, name="3D_Raindrop"),
+    url(r'^3D_Forever_Young_Lens/$',
+        D3_Forever_Young_Lens,
+        name="3D_Forever_Young_Lens"),
+    url(r'^3D_Laser_Cataract/$',
+        D3_Laser_Cataract,
+        name="3D_Laser_Cataract"),
+
+
 
     url(r'^dailyalldata/$', daily_all_data, name="daily_all_data"),
 

@@ -73,7 +73,50 @@ def daily_all_data(request):
     return render(request, 'app1/daily_all_data.html', {'data': data})
 
 
+def About_us(request):
+    return render(request, 'app1/About_us.html', {})
 
+
+def Contact_us(request):
+    return render(request, 'app1/Contact_us.html', {})
+
+
+def Q_and_A(request):
+    return render(request, 'app1/Q_and_A.html', {})
+
+
+def Contacts_glasses(request):
+    return render(request,
+                  'app1/Contacts_glasses.html', {})
+
+def Cell_phone_computer_Eye_Syndrome(request):
+    return render(request,
+                  'app1/Cell_phone_computer_Eye_Syndrome.html',
+                  {})
+
+def D3_SMILE(request):
+    return render(request,
+                  'app1/D3_SMILE.html', {})
+
+def D3_LASIK(request):
+    return render(request,
+                  'app1/D3_LASIK.html', {})
+
+def D3_Kamra(request):
+    return render(request,
+                  'app1/D3_Kamra.html', {})
+
+def D3_Raindrop(request):
+    return render(request,
+                  'app1/D3_Raindrop.html', {})
+
+def D3_Forever_Young_Lens(request):
+    return render(request,
+                  'app1/D3_Forever_Young_Lens.html', {})
+
+def D3_Laser_Cataract(request):
+    return render(request,
+                  'app1/D3_Laser_Cataract.html', {})
 
 
 def users_joined_in_a_date(request, **kwargs):
