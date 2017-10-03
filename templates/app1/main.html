@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-
 {% block content %}
-
-
 
 
 <div class="container">
@@ -26,7 +23,36 @@
             {% endfor %}
         {% endfor %}
     {% endif %}
+<div class="row text-center">
 
+    <img class="image image-responsive"
+         width="150"
+         src = "{% static "images/oct03-eye1.png" %}"/>
+
+    <img class="image image-responsive"
+         width="150"
+         src = "{% static "images/oct03-happy-people.jpg" %}"/>
+
+    <img class="image image-responsive"
+         width="150"
+         src = "{% static "images/oct03-life-without-eyeglasses.jpg" %}"/>
+
+    <img class="image image-responsive img-circle"
+         width="150"
+         src = "{% static "images/oct03-3314-at microscope-4-07.jpg" %}"/>
+
+    <img class="image image-responsive"
+         width="150"
+         src = "{% static "images/oct03-acouple.jpg" %}"/>
+
+    <img class="image image-responsive"
+         width="150"
+         src = "{% static "images/oct03-equipment.jpg" %}"/>
+
+
+
+
+</div>
     <h2>This program allows you to follow your own cumulative spending
         on glasses and contacts. Wang Vision 3D
     Cataract & LASIK Center will reimburse you the
