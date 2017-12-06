@@ -47,12 +47,16 @@ class ReceiptList(LoginRequiredMixin, ListView):
         context['total_receipt_amount'] = total_receipt_amount
 
         total_credit = 0.00
-        if total_receipt_amount >= 3000.00:
+        max_message = ""
+        if total_receipt_amount > 3000.00:
             total_credit = 3000.00
+            max_message = "(Note: the maximum of $3,000 has now been achieved)"
         else:
             total_credit = total_receipt_amount
+            max_message = ""
 
         context['total_credit'] = total_credit
+        context['max_message'] = max_message
 
 
 
