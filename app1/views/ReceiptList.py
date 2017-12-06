@@ -42,7 +42,18 @@ class ReceiptList(LoginRequiredMixin, ListView):
             user_id=uid)
         context['your_own_num_receipt'] = temp_variable.count()
 
-        total_amount = temp_variable.aggregate(sum=Sum('amount'))['sum']
-        context['total_amount'] = total_amount
+        total_receipt_amount = \
+            temp_variable.aggregate(sum=Sum('amount'))['sum']
+        context['total_receipt_amount'] = total_receipt_amount
+
+        total_credit = 0.00
+        if total_receipt_amount >= 3000.00:
+            total_credit = 3000.00
+        else:
+            total_credit = total_receipt_amount
+
+        context['total_credit'] = total_credit
+
+
 
         return context

@@ -30,7 +30,7 @@
         <h1 class="text-center">Eyeglass and contact lens receipts</h1>
     </div>
 
-    <p class="text-center fontsize180p">
+    <p hidden class="text-center fontsize180p">
         Maximum number of entries by our champion:
         {{ max_num_receipt }}<br/>
         Your own number of entries:
@@ -145,10 +145,10 @@
         </tbody>
       </table>
 
+    <h4 class="text-center">Total Receipt Amount is: {{ total_receipt_amount }}</h4>
     <p style="color:red;">
         Congratulations!!! <b>You now have
-        $<span>{{ total_amount }}</span> credit
-        (Note: Max credit is 3000 dollars)</b>,
+        $<span>{{ total_credit }}</span> credit</b>,
         for your 3D laser vision procedures with
         Dr. Ming Wang, Harvard & MIT
         (MD, magna cum laude); PhD (laser physics),
@@ -163,7 +163,7 @@
         fee is waived for you), and
         print this page and bring it with you
             as a proof of your
-            $<span>{{ total_amount }}</span>
+            $<span>{{ total_credit }}</span>
             savings!
 
     </p>
