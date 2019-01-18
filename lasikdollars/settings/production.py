@@ -114,11 +114,11 @@ STATIC_URL = '/static/'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'haifeili'
-EMAIL_HOST_PASSWORD = '&Diutsa20'
+EMAIL_HOST_USER = 'zzzzzzzzzzzzz'
+EMAIL_HOST_PASSWORD = 'zzzzzzzzzzzzz'
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'max.li@live.com'
+DEFAULT_FROM_EMAIL = 'zzzzzzzzzzzzzzzzzz'
 
 
 # Static files (CSS, JavaScript, Images)
